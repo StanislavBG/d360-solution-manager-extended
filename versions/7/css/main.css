@@ -1,0 +1,69 @@
+/* Main Application Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --header-height: 15vh;
+    --left-nav-width-expanded: 15vw;
+    --left-nav-width-collapsed: 60px;
+    --primary-color: #0176D3;
+    --secondary-color: #1589EE;
+    --text-color: #181818;
+    --border-color: #DDDBDA;
+    --bg-color: #FFFFFF;
+    --bg-light: #F3F2F2;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow: hidden;
+}
+
+.main-app-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.main-content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.main-page-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--bg-color);
+    padding: 20px;
+}
+
+/* Scrollbar styling */
+.main-page-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-page-area::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+.main-page-area::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.main-page-area::-webkit-scrollbar-thumb:hover {
+    background: #B0ADAB;
+}
+

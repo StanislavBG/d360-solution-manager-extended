@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - Salesforce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main App Page -->
+    <div id="main-app-page">
+        <!-- Header -->
+        <header id="header">
+            <!-- Search Bar Area -->
+            <div id="search-bar-area">
+                <div class="salesforce-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M13.5 8.5C13.5 8.5 11 6.5 8.5 8C6 9.5 6.5 12.5 8 14C9.5 15.5 12 15 13 13.5C14 12 13.5 8.5 13.5 8.5Z" fill="#00A1E0"/>
+                        <path d="M18.5 6C18.5 6 16.5 4.5 14.5 5.5C12.5 6.5 12.5 9 13.5 10.5C14.5 12 16.5 12 17.5 10.5C18.5 9 18.5 6 18.5 6Z" fill="#00A1E0"/>
+                        <path d="M23 9C23 9 21.5 7.5 20 8C18.5 8.5 18 10.5 19 12C20 13.5 22 13.5 23 12C24 10.5 23 9 23 9Z" fill="#00A1E0"/>
+                        <path d="M19 15C19 15 17 13.5 15.5 14.5C14 15.5 14 17.5 15 19C16 20.5 18 20.5 19 19C20 17.5 19 15 19 15Z" fill="#00A1E0"/>
+                        <path d="M13 18C13 18 11.5 16.5 10 17C8.5 17.5 8 19.5 9 21C10 22.5 12 22.5 13 21C14 19.5 13 18 13 18Z" fill="#00A1E0"/>
+                        <path d="M24 16C24 16 22.5 14.5 21 15C19.5 15.5 19 17.5 20 19C21 20.5 23 20.5 24 19C25 17.5 24 16 24 16Z" fill="#00A1E0"/>
+                    </svg>
+                </div>
+                <div class="search-bar">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#6B7280">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="application-icons">
+                    <span class="app-icon" title="Notifications">🔔</span>
+                    <span class="app-icon" title="Settings">⚙️</span>
+                    <span class="app-icon" title="Help">❓</span>
+                </div>
+            </div>
+
+            <!-- Top Navigation Area -->
+            <div id="top-navigation-area">
+                <div class="app-picker-container">
+                    <div class="app-picker-icon" id="app-picker-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <rect x="1" y="1" width="4" height="4" rx="1"/>
+                            <rect x="8" y="1" width="4" height="4" rx="1"/>
+                            <rect x="15" y="1" width="4" height="4" rx="1"/>
+                            <rect x="1" y="8" width="4" height="4" rx="1"/>
+                            <rect x="8" y="8" width="4" height="4" rx="1"/>
+                            <rect x="15" y="8" width="4" height="4" rx="1"/>
+                            <rect x="1" y="15" width="4" height="4" rx="1"/>
+                            <rect x="8" y="15" width="4" height="4" rx="1"/>
+                            <rect x="15" y="15" width="4" height="4" rx="1"/>
+                        </svg>
+                    </div>
+                    <div class="app-dropdown" id="app-dropdown">
+                        <div class="app-option" data-app="Sales">Sales</div>
+                        <div class="app-option" data-app="Service">Service</div>
+                        <div class="app-option" data-app="Marketing">Marketing</div>
+                        <div class="app-option" data-app="Commerce">Commerce</div>
+                        <div class="app-option active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div class="app-label" id="app-label">Data 360</div>
+                <nav class="navigation-menu-elements" id="navigation-menu">
+                    <a href="#" class="nav-tab" data-page="home">Home</a>
+                    <a href="#" class="nav-tab" data-page="solution-manager">Solution Manager</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div id="content-area">
+            <!-- Left Navigation -->
+            <aside id="left-navigation" class="expanded">
+                <button class="collapse-btn" id="left-nav-collapse">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#6B7280">
+                        <path d="M10 12l-4-4 4-4"/>
+                    </svg>
+                </button>
+                <nav class="nav-items">
+                    <a href="#" class="nav-item" data-page="connect-unify">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12z"/>
+                            <circle cx="10" cy="10" r="3"/>
+                        </svg>
+                        <span class="nav-label">Connect & Unify</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="govern-data">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <path d="M10 2l6 4v6c0 3-2 5-6 7-4-2-6-4-6-7V6l6-4z"/>
+                        </svg>
+                        <span class="nav-label">Govern Data</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="process-content">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <path d="M4 4h12v3H4V4zm0 5h12v7H4V9z"/>
+                        </svg>
+                        <span class="nav-label">Process Content</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="query-segment">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <circle cx="10" cy="10" r="7" stroke="#6B7280" fill="none"/>
+                            <path d="M10 7v6m-3-3h6"/>
+                        </svg>
+                        <span class="nav-label">Query & Segment</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="analyze-predict">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <path d="M3 14l4-4 3 3 5-7"/>
+                        </svg>
+                        <span class="nav-label">Analyze & Predict</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="act-on-data">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <path d="M6 10l3 3 5-6"/>
+                            <circle cx="10" cy="10" r="7" stroke="#6B7280" fill="none"/>
+                        </svg>
+                        <span class="nav-label">Act on Data</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="build-share">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#6B7280">
+                            <path d="M5 10h10M10 5v10"/>
+                        </svg>
+                        <span class="nav-label">Build & Share</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Page Area -->
+            <main id="main-page-area">
+                <!-- Dynamic content loads here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f3f2f2;
+    color: #3e3e3c;
+    overflow: hidden;
+}
+
+.main-app-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Header - 15% of vertical space */
+.header {
+    height: 15%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddbda;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+/* Search Bar Area - 60% of header */
+.search-bar-area {
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    border-bottom: 1px solid #dddbda;
+}
+
+.salesforce-icon {
+    color: #0176d3;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 50%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    background-color: #f3f2f2;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #0176d3;
+    background-color: #ffffff;
+}
+
+.application-icons {
+    display: flex;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.icon-btn {
+    color: #706e6b;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: #f3f2f2;
+    color: #0176d3;
+}
+
+/* Top Navigation Area - 40% of header */
+.top-navigation-area {
+    height: 40%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 1rem;
+}
+
+.app-picker-icon {
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: #706e6b;
+    font-size: 1.25rem;
+}
+
+.app-picker-icon:hover {
+    background-color: #f3f2f2;
+}
+
+.app-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    margin-top: 0.25rem;
+    z-index: 1000;
+}
+
+.app-dropdown.show {
+    display: block;
+}
+
+.app-option {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: #3e3e3c;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.app-option:hover {
+    background-color: #f3f2f2;
+}
+
+.app-option.active {
+    background-color: #0176d3;
+    color: #ffffff;
+}
+
+.app-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #3e3e3c;
+}
+
+.navigation-menu-elements {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #706e6b;
+    font-size: 0.875rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-tab:hover {
+    color: #0176d3;
+}
+
+.nav-tab.active {
+    color: #0176d3;
+    border-bottom-color: #0176d3;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Left Navigation - 15% horizontal when expanded */
+.left-navigation {
+    width: 15%;
+    background-color: #ffffff;
+    border-right: 1px solid #dddbda;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.left-navigation.collapsed {
+    width: 60px;
+}
+
+.nav-toggle {
+    padding: 1rem;
+    cursor: pointer;
+    color: #706e6b;
+    text-align: center;
+    border-bottom: 1px solid #dddbda;
+    transition: background-color 0.2s;
+}
+
+.nav-toggle:hover {
+    background-color: #f3f2f2;
+}
+
+.left-navigation.collapsed .nav-toggle i {
+    transform: rotate(180deg);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    color: #3e3e3c;
+    border-bottom: 1px solid #f3f2f2;
+    transition: background-color 0.2s;
+    gap: 0.75rem;
+}
+
+.nav-item:hover {
+    background-color: #f3f2f2;
+}
+
+.nav-item.active {
+    background-color: #e8f4f9;
+    border-left: 3px solid #0176d3;
+    color: #0176d3;
+}
+
+.nav-item i {
+    font-size: 1.25rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.nav-label {
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.left-navigation.collapsed .nav-label {
+    display: none;
+}
+
+.left-navigation.collapsed .nav-item {
+    justify-content: center;
+    padding: 1rem 0.5rem;
+}
+
+/* Main Page Area */
+.main-page-area {
+    flex: 1;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.page-content.hidden {
+    display: none;
+}
+
+/* Integrate Business Entities Page ($0001) */
+.page-0001 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1.5rem;
+}
+
+/* Header Instructions - 20% of page */
+.header-instructions {
+    height: 20%;
+    padding: 1.5rem;
+    background-color: #f3f2f2;
+    border-radius: 4px;
+    border: 1px solid #dddbda;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.header-instructions h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #3e3e3c;
+    margin-bottom: 1rem;
+}
+
+.header-instructions p {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #706e6b;
+}
+
+/* Step Summary - 30% of page */
+.step-summary {
+    height: 30%;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.step-summary h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3e3e3c;
+    margin-bottom: 1rem;
+}
+
+.step-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.step-list li {
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    color: #3e3e3c;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.step-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #0176d3;
+    font-weight: bold;
+}
+
+.step-list ul {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.step-list ul li {
+    padding-left: 1.5rem;
+    font-size: 0.875rem;
+    color: #706e6b;
+}
+
+.step-list ul li:before {
+    content: "–";
+    color: #706e6b;
+}
+
+/* Step Details Container */
+.step-details-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.step-details-panel {
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.step-details-header {
+    padding: 1rem 1.5rem;
+    background-color: #f3f2f2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+.step-details-header:hover {
+    background-color: #e8f4f9;
+}
+
+.step-details-header i {
+    color: #0176d3;
+    transition: transform 0.3s;
+}
+
+.step-details-panel.expanded .step-details-header i {
+    transform: rotate(180deg);
+}
+
+.step-details-header span {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #3e3e3c;
+}
+
+.step-details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1.5rem;
+}
+
+.step-details-panel.expanded .step-details-content {
+    max-height: 500px;
+    padding: 1.5rem;
+}
+
+.step-details-content p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: #706e6b;
+}
+
+/* Empty placeholder pages */
+.page-content:not(.hidden):empty::after {
+    content: "This page is currently empty.";
+    display: block;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #706e6b;
+    font-size: 1rem;
+}
+

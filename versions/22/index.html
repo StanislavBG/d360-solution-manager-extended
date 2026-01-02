@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - MDM Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="main-app-page">
+        <!-- Main Header -->
+        <header id="main-header">
+            <!-- Search Bar Area -->
+            <div id="search-bar-area">
+                <div id="salesforce-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="#1798c1">
+                        <path d="M15.6 7.2c1.9-2.3 4.8-3.7 8-3.7 5.7 0 10.4 4.7 10.4 10.4 0 1.4-.3 2.7-.8 3.9 2.9 1.3 4.8 4.2 4.8 7.5 0 4.6-3.7 8.3-8.3 8.3-1.3 0-2.6-.3-3.7-.9-1.4 2.3-4 3.9-6.9 3.9-3.3 0-6.2-2-7.4-4.9-5.1-.5-9.1-4.8-9.1-10 0-4.2 2.6-7.8 6.2-9.3-.1-.6-.2-1.3-.2-1.9C8.6 5 13.6 0 19.9 0c4.5 0 8.4 2.6 10.3 6.4z"/>
+                    </svg>
+                </div>
+                <div id="search-bar">
+                    <input type="text" placeholder="Search..." readonly>
+                </div>
+                <div id="application-icons">
+                    <span class="app-icon">📊</span>
+                    <span class="app-icon">📈</span>
+                    <span class="app-icon">⚙️</span>
+                </div>
+            </div>
+
+            <!-- Top Navigation Area -->
+            <div id="top-navigation-area">
+                <div id="app-picker-container">
+                    <button id="app-picker-icon" aria-label="Application Picker">
+                        <div class="nine-dots">
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                        </div>
+                    </button>
+                    <div id="app-picker-dropdown" class="dropdown hidden">
+                        <div class="dropdown-item" data-app="Sales">Sales</div>
+                        <div class="dropdown-item" data-app="Service">Service</div>
+                        <div class="dropdown-item" data-app="Marketing">Marketing</div>
+                        <div class="dropdown-item" data-app="Commerce">Commerce</div>
+                        <div class="dropdown-item active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div id="app-label">Data 360</div>
+                <nav id="navigation-menu-elements">
+                    <button class="nav-tab active" data-page="home">Home</button>
+                    <button class="nav-tab" data-page="solution-manager">Solution Manager</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div id="main-content">
+            <!-- Left Navigation -->
+            <aside id="left-navigation" class="expanded">
+                <button id="nav-toggle" aria-label="Toggle Navigation">☰</button>
+                <nav>
+                    <a href="#" class="nav-item" data-page="connect-unify">
+                        <span class="icon">🔗</span>
+                        <span class="label">Connect & Unify</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="govern-data">
+                        <span class="icon">🛡️</span>
+                        <span class="label">Govern Data</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="process-content">
+                        <span class="icon">⚙️</span>
+                        <span class="label">Process Content</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="query-segment">
+                        <span class="icon">🔍</span>
+                        <span class="label">Query & Segment</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="analyze-predict">
+                        <span class="icon">📊</span>
+                        <span class="label">Analyze & Predict</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="act-on-data">
+                        <span class="icon">⚡</span>
+                        <span class="label">Act on Data</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="build-share">
+                        <span class="icon">🔧</span>
+                        <span class="label">Build & Share</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Page Area -->
+            <main id="page-area">
+                <!-- Home Page (Default) -->
+                <div id="home-page" class="page active"></div>
+
+                <!-- Solution Manager Page -->
+                <div id="solution-manager-page" class="page">
+                    <div class="tiles-container">
+                        <div class="tile" id="integrate-business-entities-tile">
+                            <h2 class="tile-title">Integrate Business Entities from Informatica in Data360</h2>
+                            <p class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrate Business Entities Page -->
+                <div id="integrate-business-entities-page" class="page">
+                    <!-- Header Instructions -->
+                    <div id="header-instructions">
+                        <h1>Integrate Business Entities from Informatica in Data360</h1>
+                        <p>Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+                    </div>
+
+                    <!-- Step Summary -->
+                    <div id="step-summary" class="expanded">
+                        <div class="summary-header">
+                            <button id="summary-toggle" aria-label="Toggle Summary">▼</button>
+                            <h2>Steps Overview</h2>
+                        </div>
+                        <div class="summary-content">
+                            <div class="summary-grid">
+                                <div class="step-list">
+                                    <div class="summary-step" data-step="0">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Connect to Informatica System</span>
+                                    </div>
+                                    <div class="summary-step" data-step="1">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Choose Business Entity</span>
+                                    </div>
+                                    <div class="summary-step" data-step="2">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Review Mappings</span>
+                                    </div>
+                                    <div class="summary-step" data-step="3">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Validate Connected Data</span>
+                                    </div>
+                                    <div class="summary-step" data-step="4">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Set up Identity Rules</span>
+                                    </div>
+                                    <div class="summary-step" data-step="5">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Validate Identity Data</span>
+                                    </div>
+                                    <div class="summary-step" data-step="6">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Enable sync to Informatica</span>
+                                    </div>
+                                    <div class="summary-step" data-step="7">
+                                        <span class="step-icon not-started">○</span>
+                                        <span class="step-label">Setup Experiences</span>
+                                    </div>
+                                </div>
+                                <div class="video-placeholder">
+                                    <div class="video-content">
+                                        <p>📺 Video Tutorial</p>
+                                        <a href="#" class="link">View Documentation</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step Details Container -->
+                    <div id="step-details-container">
+                        <!-- Step 1: Connect to Informatica System -->
+                        <div class="step-detail" data-step="0">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Connect to Informatica System</h3>
+                                    <p class="step-headline">Establish trusted connection between D360 and Informatica tenants <span class="sub-steps-summary">0 out of 1</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <div class="step-description">
+                                            <p>Configure details for the Informatica tenant, so that a trusted connection between them can be provided. The important items are "User-Name" and "Password"</p>
+                                        </div>
+                                        <div class="connection-form">
+                                            <div class="form-group">
+                                                <label for="connection-name">Connection Name</label>
+                                                <input type="text" id="connection-name" placeholder="Enter connection name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenant-url">Tenant URL</label>
+                                                <input type="text" id="tenant-url" placeholder="Enter tenant URL">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="user-name">User Name</label>
+                                                <input type="text" id="user-name" placeholder="Enter username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="password" id="password" placeholder="Enter password">
+                                            </div>
+                                            <button class="validate-btn" id="validate-connection">Validate</button>
+                                            <div id="validation-result" class="hidden"></div>
+                                        </div>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">Configure Connection</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Choose Business Entity -->
+                        <div class="step-detail" data-step="1">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Choose Business Entity</h3>
+                                    <p class="step-headline">Select Business from the connected tenant to integrate into Data 360 <span class="sub-steps-summary">0 out of 1</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <div class="form-group">
+                                            <label>Business Entities</label>
+                                            <div class="entity-picker">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Customer"> Customer
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Organization"> Organization
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Product"> Product
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Supplier"> Supplier
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Employee"> Employee
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Asset"> Asset
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Location"> Location
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Account"> Account
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Contract"> Contract
+                                                </label>
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" name="entity" value="Project"> Project
+                                                </label>
+                                            </div>
+                                            <div id="relationship-notification" class="notification hidden">
+                                                ℹ️ Note: When multiple entities are selected, the relationships between the entities will also be included.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">View Entity Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Review Mappings -->
+                        <div class="step-detail" data-step="2">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Review Mappings</h3>
+                                    <p class="step-headline">Review data objects and field mappings <span class="sub-steps-summary">0 out of 1</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <p class="step-description">Based on selected business entities these are the data objects identified from informatica that are being synced to Data 360.</p>
+
+                                        <div id="mapping-tables" class="mapping-list">
+                                            <div class="mapping-item">
+                                                <h4>CustomerProfile</h4>
+                                                <div class="field-list">
+                                                    <span>customer_id</span>, <span>first_name</span>, <span>last_name</span>, <span>email</span>, <span>phone</span>
+                                                </div>
+                                                <button class="action-btn small">Review Mappings & Create Fields</button>
+                                            </div>
+                                            <div class="mapping-item">
+                                                <h4>CustomerAddress</h4>
+                                                <div class="field-list">
+                                                    <span>address_id</span>, <span>street</span>, <span>city</span>, <span>state</span>, <span>postal_code</span>, <span>country</span>
+                                                </div>
+                                                <button class="action-btn small">Review Mappings & Create Fields</button>
+                                            </div>
+                                            <div class="mapping-item">
+                                                <h4>CustomerContactPoint</h4>
+                                                <div class="field-list">
+                                                    <span>contact_id</span>, <span>contact_type</span>, <span>contact_value</span>, <span>is_primary</span>
+                                                </div>
+                                                <button class="action-btn small">Review Mappings & Create Fields</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="notification">
+                                            ℹ️ We've detected extra fields beyond the standard. Below is the proposed list of modification to Salesforce's DMO to add placeholders for these values
+                                        </div>
+
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="mappings-reviewed"> Mappings and schema reviewed
+                                        </label>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">View All Mappings</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Validate Connected Data -->
+                        <div class="step-detail" data-step="3">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Validate Connected Data</h3>
+                                    <p class="step-headline">Preview and validate data integration <span class="sub-steps-summary">0 out of 3</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <p class="step-description">By Now we've integrated, mapped and transformed the Business Entities to the Standard Data Model, the following previews are based on sample data to help validate correctness of mapping and field value population</p>
+
+                                        <div class="preview-options">
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>View Individuals and Contact Points by Data Source</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>View Sample of Individuals and Contact Points</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>View Sample of Emails, Phones or Address</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">Open Data Explorer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Set up Identity Rules -->
+                        <div class="step-detail" data-step="4">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Set up Identity Rules</h3>
+                                    <p class="step-headline">Configure match and reconciliation rules <span class="sub-steps-summary">0 out of 1</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <p class="step-description">In this section we are going to the rules that govern how to link new profile data to existing business entities</p>
+
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" class="substep-checkbox">
+                                            <span>Configure Match and Reconciliation Rules</span>
+                                        </label>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">Configure Match and Reconciliation Rules</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 6: Validate Identity Data -->
+                        <div class="step-detail" data-step="5">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Validate Identity Data</h3>
+                                    <p class="step-headline">Inspect identity resolution results <span class="sub-steps-summary">0 out of 5</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <p class="step-description">After Identity Resolution has finished processing use the following sample data preview to inspect the data</p>
+
+                                        <div class="preview-options">
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>Preview Sample Profile Data</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>Explore the outliers</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>Preview Identity Process Summary</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                            <div class="preview-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span>Preview Consolidation Rate by Data Source</span>
+                                                </label>
+                                                <button class="action-btn small preview-btn">Preview</button>
+                                            </div>
+                                            <div class="toggle-item">
+                                                <label class="toggle-label">
+                                                    <span>Enable Identity Rules Schedule</span>
+                                                    <input type="checkbox" class="toggle-switch substep-checkbox">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">View Identity Dashboard</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 7: Enable sync to Informatica -->
+                        <div class="step-detail" data-step="6">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Enable sync to Informatica</h3>
+                                    <p class="step-headline">Configure bi-directional sync <span class="sub-steps-summary">0 out of 1</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <p class="step-description">Enable sync to Informatica for Key-Rings that do not contain a business entity. Share the source records for enrichment and quality assurance.</p>
+
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" class="substep-checkbox">
+                                            <span>Configure D360 Setup in Informatica</span>
+                                        </label>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <button class="action-btn">Configure D360 Setup in Informatica</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 8: Setup Experiences -->
+                        <div class="step-detail" data-step="7">
+                            <div class="step-header">
+                                <div class="step-title-area">
+                                    <h3>Setup Experiences</h3>
+                                    <p class="step-headline">Configure user experiences <span class="sub-steps-summary">0 out of 3</span></p>
+                                </div>
+                                <button class="expand-toggle">▼</button>
+                            </div>
+                            <div class="step-body">
+                                <div class="step-content-grid">
+                                    <div class="step-left">
+                                        <div class="experience-list">
+                                            <div class="experience-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span><strong>Search Before Create</strong> - prevent duplicate records from being created</span>
+                                                </label>
+                                            </div>
+                                            <div class="experience-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span><strong>Copy field</strong> - enrich operational records with enterprise attributes</span>
+                                                </label>
+                                            </div>
+                                            <div class="experience-item">
+                                                <label class="checkbox-label">
+                                                    <input type="checkbox" class="substep-checkbox">
+                                                    <span><strong>Related List</strong> - showcase any information related to the primary entity</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step-right">
+                                        <div class="action-buttons">
+                                            <a href="#" class="action-link">View Trailhead for Setup</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-footer">
+                                    <div class="footer-left">
+                                        <a href="#" class="link">View Documentation</a>
+                                        <a href="#" class="link">Check out Tutorial</a>
+                                    </div>
+                                    <div class="footer-right">
+                                        <button class="next-step-btn disabled">Complete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Pages -->
+                <div id="connect-unify-page" class="page placeholder-page">
+                    <p>Connect & Unify</p>
+                </div>
+                <div id="govern-data-page" class="page placeholder-page">
+                    <p>Govern Data</p>
+                </div>
+                <div id="process-content-page" class="page placeholder-page">
+                    <p>Process Content</p>
+                </div>
+                <div id="query-segment-page" class="page placeholder-page">
+                    <p>Query & Segment</p>
+                </div>
+                <div id="analyze-predict-page" class="page placeholder-page">
+                    <p>Analyze & Predict</p>
+                </div>
+                <div id="act-on-data-page" class="page placeholder-page">
+                    <p>Act on Data</p>
+                </div>
+                <div id="build-share-page" class="page placeholder-page">
+                    <p>Build & Share</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

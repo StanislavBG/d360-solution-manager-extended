@@ -1,0 +1,154 @@
+/* Step Details Template Component */
+.step-details-panel {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.step-details-panel.collapsed {
+    min-height: 60px;
+}
+
+.step-details-panel.expanded {
+    min-height: 240px;
+}
+
+.step-details-header {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.step-details-header:hover {
+    background-color: var(--bg-light);
+}
+
+.step-details-title-section {
+    flex: 1;
+}
+
+.step-details-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}
+
+.step-details-headline {
+    font-size: 14px;
+    color: #706E6B;
+    line-height: 1.4;
+}
+
+.step-details-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    margin-left: 16px;
+}
+
+.step-details-panel.expanded .step-details-toggle svg {
+    transform: rotate(180deg);
+}
+
+.step-details-body {
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.step-details-panel.expanded .step-details-body {
+    display: flex;
+}
+
+.instruction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.instruction-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.instruction-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.instruction-checkbox {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.instruction-item.completed .instruction-text {
+    text-decoration: line-through;
+    color: #706E6B;
+}
+
+/* Status Icons */
+.status-icon,
+.step-status-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.step-status-icon.not-started {
+    color: #706E6B;
+}
+
+.step-status-icon.not-started::before {
+    content: '○';
+    font-size: 18px;
+    line-height: 1;
+}
+
+.step-status-icon.in-progress {
+    color: var(--primary-color);
+}
+
+.step-status-icon.in-progress::before {
+    content: '◐';
+    font-size: 18px;
+    line-height: 1;
+}
+
+.step-status-icon.completed {
+    color: #2E844A;
+}
+
+.step-status-icon.completed::before {
+    content: '✓';
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+}
+

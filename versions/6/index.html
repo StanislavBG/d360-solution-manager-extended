@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-app-page">
+        <!-- Header -->
+        <header class="header">
+            <!-- Search Bar Area (60% of header vertical) -->
+            <div class="search-bar-area">
+                <div class="salesforce-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#0176D3">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <div class="app-icon" data-page="home">📊</div>
+                    <div class="app-icon" data-page="settings">⚙️</div>
+                    <div class="app-icon" data-page="notifications">🔔</div>
+                </div>
+            </div>
+            
+            <!-- Top Navigation Area (40% of header vertical) -->
+            <div class="top-navigation-area">
+                <div class="app-picker-icon" id="appPicker">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <circle cx="4" cy="4" r="1.5"/>
+                        <circle cx="10" cy="4" r="1.5"/>
+                        <circle cx="16" cy="4" r="1.5"/>
+                        <circle cx="4" cy="10" r="1.5"/>
+                        <circle cx="10" cy="10" r="1.5"/>
+                        <circle cx="16" cy="10" r="1.5"/>
+                        <circle cx="4" cy="16" r="1.5"/>
+                        <circle cx="10" cy="16" r="1.5"/>
+                        <circle cx="16" cy="16" r="1.5"/>
+                    </svg>
+                </div>
+                <div class="app-label" id="appLabel">Data 360</div>
+                <div class="navigation-menu-elements">
+                    <div class="nav-tab active" data-page="home-data-360">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </div>
+                <div class="app-picker-dropdown" id="appPickerDropdown">
+                    <div class="dropdown-item" data-app="Sales">Sales</div>
+                    <div class="dropdown-item" data-app="Service">Service</div>
+                    <div class="dropdown-item" data-app="Marketing">Marketing</div>
+                    <div class="dropdown-item" data-app="Commerce">Commerce</div>
+                    <div class="dropdown-item active" data-app="Data 360">Data 360</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <!-- Left Navigation -->
+            <nav class="left-navigation" id="leftNav">
+                <div class="nav-toggle" id="navToggle">◄</div>
+                <div class="nav-item" data-page="connect-unify">
+                    <span class="nav-icon">🔗</span>
+                    <span class="nav-label">Connect & Unify</span>
+                </div>
+                <div class="nav-item" data-page="govern-data">
+                    <span class="nav-icon">🛡️</span>
+                    <span class="nav-label">Govern Data</span>
+                </div>
+                <div class="nav-item" data-page="process-content">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-label">Process Content</span>
+                </div>
+                <div class="nav-item" data-page="query-segment">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-label">Query & Segment</span>
+                </div>
+                <div class="nav-item" data-page="analyze-predict">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-label">Analyze & Predict</span>
+                </div>
+                <div class="nav-item" data-page="act-on-data">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-label">Act on Data</span>
+                </div>
+                <div class="nav-item" data-page="build-share">
+                    <span class="nav-icon">🔨</span>
+                    <span class="nav-label">Build & Share</span>
+                </div>
+            </nav>
+
+            <!-- Main Page Area -->
+            <main class="main-page-area" id="mainPageArea">
+                <!-- Pages will be dynamically loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Page Templates (hidden) -->
+    <template id="home-data-360-page">
+        <div class="page home-data-360-page">
+            <div class="empty-state">
+                <h2>Home</h2>
+                <p>Welcome to Data 360</p>
+            </div>
+        </div>
+    </template>
+
+    <template id="solution-manager-page">
+        <div class="page solution-manager-page">
+            <div class="object-home">
+                <div class="tile" data-page="integrate-business-entities">
+                    <h3>Integrate Business Entities from Informatica in Data360</h3>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="integrate-business-entities-page">
+        <div class="page integrate-business-entities-page">
+            <div class="header-instructions" id="headerInstructions">
+                <h2>Realize the full potential of the curated and enriched business entities from Informatica directly in D360</h2>
+                <p>In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+            </div>
+            <div class="step-summary">
+                <h3>Step Summary</h3>
+                <div class="step-list">
+                    <div class="step-item" data-step="0">1. Connect to Informatica System</div>
+                    <div class="step-item" data-step="1">2. Choose Business Entity</div>
+                    <div class="step-item" data-step="2">3. Review and Extend Mappings</div>
+                    <div class="step-item" data-step="3">4. Validate Connected data</div>
+                    <div class="step-item" data-step="4">5. Set up Identity Rules</div>
+                    <div class="step-item" data-step="5">6. Validate Identity Data</div>
+                    <div class="step-item" data-step="6">7. Enable sync to Informatica</div>
+                    <div class="step-item" data-step="7">8. Setup Experiences</div>
+                </div>
+            </div>
+            <div class="step-details-container">
+                <div class="step-details-panel" data-step="0">
+                    <div class="step-details-header">
+                        <h4>Connect to Informatica System</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for connecting to the Informatica system will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="1">
+                    <div class="step-details-header">
+                        <h4>Choose Business Entity</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for choosing a business entity will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="2">
+                    <div class="step-details-header">
+                        <h4>Review and Extend Mappings</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for reviewing and extending mappings will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="3">
+                    <div class="step-details-header">
+                        <h4>Validate Connected data</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for validating connected data will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="4">
+                    <div class="step-details-header">
+                        <h4>Set up Identity Rules</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for setting up identity rules will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="5">
+                    <div class="step-details-header">
+                        <h4>Validate Identity Data</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for validating identity data will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="6">
+                    <div class="step-details-header">
+                        <h4>Enable sync to Informatica</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <p>Detailed instructions for enabling sync to Informatica will appear here.</p>
+                    </div>
+                </div>
+                <div class="step-details-panel" data-step="7">
+                    <div class="step-details-header">
+                        <h4>Setup Experiences</h4>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="step-details-content">
+                        <ul>
+                            <li><strong>"Search Before Create"</strong> - prevent duplicate records from being created</li>
+                            <li><strong>"Copy field"</strong> - enrich operational records with enterprise attributes</li>
+                            <li><strong>"Related List"</strong> - showcase any information related to the primary entity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Placeholder pages for left navigation -->
+    <template id="connect-unify-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Connect & Unify</h2>
+            </div>
+        </div>
+    </template>
+
+    <template id="govern-data-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Govern Data</h2>
+            </div>
+        </div>
+    </template>
+
+    <template id="process-content-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Process Content</h2>
+            </div>
+        </div>
+    </template>
+
+    <template id="query-segment-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Query & Segment</h2>
+            </div>
+        </div>
+    </template>
+
+    <template id="analyze-predict-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Analyze & Predict</h2>
+            </div>
+        </div>
+    </template>
+
+    <template id="act-on-data-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Act on Data</h2>
+            </div>
+        </div>
+    </template>
+
+    <template id="build-share-page">
+        <div class="page placeholder-page">
+            <div class="empty-state">
+                <h2>Build & Share</h2>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

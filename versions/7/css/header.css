@@ -1,0 +1,175 @@
+/* Header Styles */
+.header {
+    height: var(--header-height);
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+/* Search Bar Area (60% of header) */
+.search-bar-area {
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+.salesforce-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.salesforce-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    max-width: 500px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.application-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.app-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-color);
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.app-icon:hover {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+}
+
+/* Top Navigation Area (40% of header) */
+.top-navigation-area {
+    height: 40%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.app-picker-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: var(--text-color);
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.app-picker-icon:hover {
+    background-color: var(--bg-light);
+}
+
+.app-picker-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    min-width: 180px;
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.app-picker-dropdown.show {
+    display: block;
+}
+
+.app-option {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.app-option:hover {
+    background-color: var(--bg-light);
+}
+
+.app-option.active {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.app-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+.navigation-menu-elements {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-tab {
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-color);
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+}
+
+.nav-tab:hover {
+    background-color: var(--bg-light);
+}
+
+.nav-tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    font-weight: 500;
+}
+

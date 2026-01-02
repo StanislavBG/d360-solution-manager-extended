@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - MDM Guided Flows</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Main App Page -->
+    <div id="main-app-page" class="main-app-page">
+        
+        <!-- Header -->
+        <header id="header" class="header">
+            <!-- Search Bar Area (60% of header) -->
+            <div class="search-bar-area">
+                <div class="salesforce-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#0176D3">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                    </svg>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <div class="app-icon" data-page="home" title="Home">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                    </div>
+                    <div class="app-icon" data-page="settings" title="Settings">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Top Navigation Area (40% of header) -->
+            <div class="top-navigation-area">
+                <div class="app-picker-icon" id="app-picker">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
+                    </svg>
+                    <div class="app-picker-dropdown" id="app-picker-dropdown">
+                        <div class="app-option" data-app="sales">Sales</div>
+                        <div class="app-option" data-app="service">Service</div>
+                        <div class="app-option" data-app="marketing">Marketing</div>
+                        <div class="app-option" data-app="commerce">Commerce</div>
+                        <div class="app-option active" data-app="data360">Data 360</div>
+                    </div>
+                </div>
+                <div class="app-label" id="app-label">Data 360</div>
+                <div class="navigation-menu-elements" id="navigation-tabs">
+                    <div class="nav-tab active" data-page="home-data360">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content Area -->
+        <div class="main-content-wrapper">
+            <!-- Left Navigation -->
+            <nav id="left-navigation" class="left-navigation expanded">
+                <button class="nav-toggle" id="nav-toggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <div class="nav-items">
+                    <div class="nav-item" data-page="connect-unify">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Connect & Unify</span>
+                    </div>
+                    <div class="nav-item" data-page="govern-data">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Govern Data</span>
+                    </div>
+                    <div class="nav-item" data-page="process-content">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Process Content</span>
+                    </div>
+                    <div class="nav-item" data-page="query-segment">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Query & Segment</span>
+                    </div>
+                    <div class="nav-item" data-page="analyze-predict">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Analyze & Predict</span>
+                    </div>
+                    <div class="nav-item" data-page="act-on-data">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Act on Data</span>
+                    </div>
+                    <div class="nav-item" data-page="build-share">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="nav-label">Build & Share</span>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Main Page Area -->
+            <main id="main-page-area" class="main-page-area">
+                <!-- Content will be dynamically loaded here -->
+            </main>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/solutionManager.js"></script>
+    <script src="js/pages/integrateBusinessEntities.js"></script>
+</body>
+</html>
+

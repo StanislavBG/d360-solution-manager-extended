@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - MDM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main App Page -->
+    <div id="main-app-page" class="main-app-page">
+        <!-- Header - 15% of vertical space -->
+        <header id="header" class="header">
+            <!-- Search Bar Area - 60% of header vertical space -->
+            <div class="search-bar-area">
+                <div class="salesforce-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-cog"></i>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+            
+            <!-- Top Navigation Area - 40% of header vertical space -->
+            <div class="top-navigation-area">
+                <div class="app-picker-icon" id="app-picker">
+                    <i class="fas fa-th"></i>
+                    <div class="app-dropdown" id="app-dropdown">
+                        <div class="app-option" data-app="Sales">Sales</div>
+                        <div class="app-option" data-app="Service">Service</div>
+                        <div class="app-option" data-app="Marketing">Marketing</div>
+                        <div class="app-option" data-app="Commerce">Commerce</div>
+                        <div class="app-option active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div class="app-label" id="app-label">Data 360</div>
+                <div class="navigation-menu-elements" id="nav-tabs">
+                    <div class="nav-tab active" data-page="home">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Wrapper -->
+        <div class="main-content-wrapper">
+            <!-- Left Navigation - 15% horizontal when expanded -->
+            <nav id="left-navigation" class="left-navigation expanded">
+                <div class="nav-toggle" id="nav-toggle">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="nav-item" data-page="connect-unify">
+                    <i class="fas fa-link"></i>
+                    <span class="nav-label">Connect & Unify</span>
+                </div>
+                <div class="nav-item" data-page="govern-data">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="nav-label">Govern Data</span>
+                </div>
+                <div class="nav-item" data-page="process-content">
+                    <i class="fas fa-cogs"></i>
+                    <span class="nav-label">Process Content</span>
+                </div>
+                <div class="nav-item" data-page="query-segment">
+                    <i class="fas fa-search"></i>
+                    <span class="nav-label">Query & Segment</span>
+                </div>
+                <div class="nav-item" data-page="analyze-predict">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-label">Analyze & Predict</span>
+                </div>
+                <div class="nav-item" data-page="act-on-data">
+                    <i class="fas fa-bolt"></i>
+                    <span class="nav-label">Act on Data</span>
+                </div>
+                <div class="nav-item" data-page="build-share">
+                    <i class="fas fa-share-alt"></i>
+                    <span class="nav-label">Build & Share</span>
+                </div>
+            </nav>
+
+            <!-- Main Page Area -->
+            <main id="main-page-area" class="main-page-area">
+                <!-- Content will be dynamically loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

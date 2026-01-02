@@ -1,0 +1,773 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Salesforce Sans', Arial, sans-serif;
+    background-color: #f3f3f3;
+    color: #333;
+    overflow: hidden;
+}
+
+/* Main App Page */
+#main-app-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Header - 15% of vertical space */
+#header {
+    height: 15vh;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddbda;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+/* Search Bar Area - 60% of header */
+#search-bar-area {
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background-color: #ffffff;
+}
+
+#salesforce-icon {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+#search-bar {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#search-bar input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f3f3f3;
+}
+
+#search-bar input:focus {
+    outline: none;
+    border-color: #0176d3;
+    background-color: #ffffff;
+}
+
+#application-icons {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.app-icon {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0.25rem;
+}
+
+/* Top Navigation Area - 40% of header */
+#top-navigation-area {
+    height: 40%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background-color: #fafaf9;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* App Picker */
+.dropdown {
+    position: relative;
+}
+
+#app-picker-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
+}
+
+#app-picker-btn:hover {
+    background-color: #f3f3f3;
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f3f3;
+}
+
+.dropdown-item.active {
+    background-color: #e8f4ff;
+    font-weight: 600;
+}
+
+#app-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 2rem;
+    color: #080707;
+}
+
+/* Navigation Menu Elements (Tabs) */
+#navigation-menu-elements {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px 4px 0 0;
+    transition: background-color 0.2s;
+}
+
+.nav-tab:hover {
+    background-color: #e5e5e5;
+}
+
+.nav-tab.active {
+    background-color: #ffffff;
+    font-weight: 600;
+    border-bottom: 3px solid #0176d3;
+}
+
+/* Content Wrapper */
+#content-wrapper {
+    display: flex;
+    height: 85vh;
+    overflow: hidden;
+}
+
+/* Left Navigation */
+#left-navigation {
+    background-color: #ffffff;
+    border-right: 1px solid #dddbda;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#left-navigation.expanded {
+    width: 15%;
+    min-width: 200px;
+}
+
+#left-navigation.collapsed {
+    width: 60px;
+}
+
+#nav-collapse-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    align-self: flex-end;
+    transition: transform 0.3s ease;
+}
+
+#left-navigation.collapsed #nav-collapse-btn {
+    transform: rotate(180deg);
+}
+
+#nav-collapse-btn:hover {
+    background-color: #f3f3f3;
+}
+
+#nav-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.nav-item:hover {
+    background-color: #f3f3f3;
+}
+
+.nav-item.active {
+    background-color: #e8f4ff;
+    border-left: 3px solid #0176d3;
+}
+
+.nav-icon {
+    min-width: 20px;
+    margin-right: 0.75rem;
+}
+
+#left-navigation.collapsed .nav-label {
+    display: none;
+}
+
+#left-navigation.collapsed .nav-item {
+    justify-content: center;
+}
+
+#left-navigation.collapsed .nav-icon {
+    margin-right: 0;
+}
+
+/* Main Page Area */
+#main-page-area {
+    flex: 1;
+    background-color: #f3f3f3;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #706e6b;
+}
+
+.empty-state h2 {
+    font-size: 24px;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    font-size: 14px;
+}
+
+/* Tile Layout for Solution Manager */
+.tile-container {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.tile {
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.tile:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.tile-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #0176d3;
+}
+
+.tile-description {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Integrate Business Entities Page */
+.integrate-page {
+    padding: 2rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Header Instructions */
+.header-instructions {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #dddbda;
+}
+
+.header-instructions h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #080707;
+}
+
+.header-instructions p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Step Summary */
+.step-summary {
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.step-summary.collapsed {
+    padding: 1rem 1.5rem;
+}
+
+.step-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.step-summary.collapsed .step-summary-header {
+    margin-bottom: 0;
+}
+
+.step-summary-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.collapse-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s;
+}
+
+.step-summary.collapsed .collapse-btn {
+    transform: rotate(180deg);
+}
+
+.step-summary-content {
+    display: flex;
+    gap: 2rem;
+}
+
+.step-summary.collapsed .step-summary-content {
+    display: none;
+}
+
+.steps-list {
+    flex: 1;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    font-size: 14px;
+}
+
+.step-status-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.step-status-icon.not-started {
+    background-color: #e5e5e5;
+    color: #706e6b;
+}
+
+.step-status-icon.in-progress {
+    background-color: #ffc107;
+    color: #ffffff;
+}
+
+.step-status-icon.completed {
+    background-color: #2e844a;
+    color: #ffffff;
+}
+
+.video-placeholder {
+    flex: 1;
+    background-color: #f3f3f3;
+    border: 2px dashed #dddbda;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: #706e6b;
+}
+
+/* Step Details Template */
+.step-detail-panel {
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.step-detail-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #fafaf9;
+}
+
+.step-detail-header:hover {
+    background-color: #f3f3f3;
+}
+
+.step-header-left {
+    flex: 1;
+}
+
+.step-number {
+    font-size: 12px;
+    color: #706e6b;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.step-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #080707;
+}
+
+.step-headline {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.sub-steps-summary {
+    font-size: 12px;
+    color: #706e6b;
+}
+
+.expand-icon {
+    margin-left: 1rem;
+    transition: transform 0.3s;
+    color: #706e6b;
+}
+
+.step-detail-panel.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.step-detail-body {
+    display: none;
+    padding: 1.5rem;
+}
+
+.step-detail-panel.expanded .step-detail-body {
+    display: block;
+}
+
+.step-body-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.step-instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.step-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.sub-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.sub-step-checkbox {
+    margin-top: 0.25rem;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.sub-step-content {
+    flex: 1;
+}
+
+.sub-step-label {
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: #0176d3;
+}
+
+.step-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #0176d3;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #014a94;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: #0176d3;
+    border: 1px solid #0176d3;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f3f3;
+}
+
+.link {
+    color: #0176d3;
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.step-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-right {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Table for data preview */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 13px;
+}
+
+.data-table th {
+    background-color: #fafaf9;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #dddbda;
+}
+
+.data-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.scrollable-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.list-item {
+    padding: 0.5rem;
+    font-size: 13px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+/* Notification box */
+.notification {
+    background-color: #fef8e7;
+    border-left: 4px solid #ffc107;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.notification-text {
+    font-size: 13px;
+    color: #333;
+}
+
+/* Validation message */
+.validation-message {
+    display: none;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    font-size: 14px;
+}
+
+.validation-message.success {
+    background-color: #ecf9f2;
+    border-left: 4px solid #2e844a;
+    color: #2e844a;
+}
+
+.validation-message.error {
+    background-color: #fef8f8;
+    border-left: 4px solid #c23934;
+    color: #c23934;
+}
+
+.validation-message.show {
+    display: block;
+}
+
+/* Spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #0176d3;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin: 1rem auto;
+    display: none;
+}
+
+.spinner.show {
+    display: block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Multi-column layout for substeps */
+.multi-column-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    #left-navigation.expanded {
+        width: 80px;
+    }
+
+    .nav-label {
+        display: none;
+    }
+
+    .step-body-content {
+        grid-template-columns: 1fr;
+    }
+}

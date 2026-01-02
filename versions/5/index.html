@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-app-page">
+        <!-- Header -->
+        <header class="header">
+            <!-- Search Bar Area (60% of header vertical) -->
+            <div class="search-bar-area">
+                <div class="salesforce-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="#00A1E0">
+                        <path d="M19.36 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.64-4.96z"/>
+                    </svg>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <div class="app-icon" data-page="home">📊</div>
+                    <div class="app-icon" data-page="settings">⚙️</div>
+                    <div class="app-icon" data-page="notifications">🔔</div>
+                </div>
+            </div>
+            
+            <!-- Top Navigation Area (40% of header vertical) -->
+            <div class="top-navigation-area">
+                <div class="app-picker-icon" id="appPicker">
+                    <div class="nine-dots">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="app-picker-dropdown" id="appPickerDropdown">
+                        <div class="app-option" data-app="sales">Sales</div>
+                        <div class="app-option" data-app="service">Service</div>
+                        <div class="app-option" data-app="marketing">Marketing</div>
+                        <div class="app-option" data-app="commerce">Commerce</div>
+                        <div class="app-option active" data-app="data360">Data 360</div>
+                    </div>
+                </div>
+                <div class="app-label" id="appLabel">Data 360</div>
+                <div class="navigation-menu-elements" id="navigationMenu">
+                    <div class="nav-tab active" data-page="home-data360">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Left Navigation -->
+        <nav class="left-navigation" id="leftNav">
+            <div class="nav-toggle" id="navToggle">
+                <span>◀</span>
+            </div>
+            <div class="nav-item" data-page="connect-unify">
+                <span class="nav-icon">🔗</span>
+                <span class="nav-label">Connect & Unify</span>
+            </div>
+            <div class="nav-item" data-page="govern-data">
+                <span class="nav-icon">🛡️</span>
+                <span class="nav-label">Govern Data</span>
+            </div>
+            <div class="nav-item" data-page="process-content">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Process Content</span>
+            </div>
+            <div class="nav-item" data-page="query-segment">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-label">Query & Segment</span>
+            </div>
+            <div class="nav-item" data-page="analyze-predict">
+                <span class="nav-icon">📈</span>
+                <span class="nav-label">Analyze & Predict</span>
+            </div>
+            <div class="nav-item" data-page="act-on-data">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Act on Data</span>
+            </div>
+            <div class="nav-item" data-page="build-share">
+                <span class="nav-icon">🔨</span>
+                <span class="nav-label">Build & Share</span>
+            </div>
+        </nav>
+
+        <!-- Main Page Area -->
+        <main class="main-page-area" id="mainPageArea">
+            <!-- Home Data 360 Page -->
+            <div class="page-content" id="home-data360" data-page="home-data360">
+                <div class="empty-state">
+                    <h2>Home</h2>
+                    <p>Welcome to Data 360</p>
+                </div>
+            </div>
+
+            <!-- Solution Manager Page -->
+            <div class="page-content" id="solution-manager" data-page="solution-manager" style="display: none;">
+                <div class="object-home">
+                    <h2>Solution Manager</h2>
+                    <div class="tile-list">
+                        <div class="tile" id="integrate-business-entities-tile" data-page="integrate-business-entities">
+                            <h3>Integrate Business Entities from Informatica in Data360</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrate Business Entities Page -->
+            <div class="page-content" id="integrate-business-entities" data-page="integrate-business-entities" style="display: none;">
+                <div class="header-instructions" id="headerInstructions">
+                    <h2>Integrate Business Entities from Informatica in Data360</h2>
+                    <p>Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+                </div>
+                
+                <div class="step-summary">
+                    <h3>Step Summary</h3>
+                    <div class="step-summary-list">
+                        <div class="step-summary-item" data-step="1">1. Connect to Informatica System</div>
+                        <div class="step-summary-item" data-step="2">2. Choose Business Entity</div>
+                        <div class="step-summary-item" data-step="3">3. Review and Extend Mappings</div>
+                        <div class="step-summary-item" data-step="4">4. Validate Connected data</div>
+                        <div class="step-summary-item" data-step="5">5. Set up Identity Rules</div>
+                        <div class="step-summary-item" data-step="6">6. Validate Identity Data</div>
+                        <div class="step-summary-item" data-step="7">7. Enable sync to Informatica</div>
+                    </div>
+                </div>
+
+                <div class="step-details-container">
+                    <div class="step-details-template" data-step="1">
+                        <div class="step-title">Connect to Informatica System</div>
+                        <div class="step-content">
+                            <p>Detailed instructions for connecting to the Informatica system will appear here. This step involves configuring the connection parameters and establishing secure communication channels.</p>
+                        </div>
+                    </div>
+                    <div class="step-details-template" data-step="2">
+                        <div class="step-title">Choose Business Entity</div>
+                        <div class="step-content">
+                            <p>Select the business entity you want to integrate from Informatica. Review the available entities and choose the one that matches your requirements.</p>
+                        </div>
+                    </div>
+                    <div class="step-details-template" data-step="3">
+                        <div class="step-title">Review and Extend Mappings</div>
+                        <div class="step-content">
+                            <p>Review the default field mappings between Informatica and Data360. Extend or modify mappings as needed to ensure data integrity and completeness.</p>
+                        </div>
+                    </div>
+                    <div class="step-details-template" data-step="4">
+                        <div class="step-title">Validate Connected data</div>
+                        <div class="step-content">
+                            <p>Validate the connected data to ensure accuracy and completeness. Run validation checks and review any discrepancies before proceeding.</p>
+                        </div>
+                    </div>
+                    <div class="step-details-template" data-step="5">
+                        <div class="step-title">Set up Identity Rules</div>
+                        <div class="step-content">
+                            <p>Configure identity rules to determine how records are matched and merged. Set up matching criteria and rules for duplicate detection.</p>
+                        </div>
+                    </div>
+                    <div class="step-details-template" data-step="6">
+                        <div class="step-title">Validate Identity Data</div>
+                        <div class="step-content">
+                            <p>Validate the identity data to ensure proper matching and merging. Review identity resolution results and adjust rules if necessary.</p>
+                        </div>
+                    </div>
+                    <div class="step-details-template" data-step="7">
+                        <div class="step-title">Enable sync to Informatica</div>
+                        <div class="step-content">
+                            <p>Enable synchronization to Informatica to keep data in sync. Configure sync schedules and options for bidirectional data flow.</p>
+                            <h4>Setup Experiences</h4>
+                            <ul>
+                                <li><strong>Search Before Create</strong> - prevent duplicate records from being created</li>
+                                <li><strong>Copy field</strong> - enrich operational records with enterprise attributes</li>
+                                <li><strong>Related List</strong> - showcase any information related to the primary entity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Navigation Pages (Placeholders) -->
+            <div class="page-content" id="connect-unify" data-page="connect-unify" style="display: none;">
+                <div class="empty-state">
+                    <h2>Connect & Unify</h2>
+                </div>
+            </div>
+            <div class="page-content" id="govern-data" data-page="govern-data" style="display: none;">
+                <div class="empty-state">
+                    <h2>Govern Data</h2>
+                </div>
+            </div>
+            <div class="page-content" id="process-content" data-page="process-content" style="display: none;">
+                <div class="empty-state">
+                    <h2>Process Content</h2>
+                </div>
+            </div>
+            <div class="page-content" id="query-segment" data-page="query-segment" style="display: none;">
+                <div class="empty-state">
+                    <h2>Query & Segment</h2>
+                </div>
+            </div>
+            <div class="page-content" id="analyze-predict" data-page="analyze-predict" style="display: none;">
+                <div class="empty-state">
+                    <h2>Analyze & Predict</h2>
+                </div>
+            </div>
+            <div class="page-content" id="act-on-data" data-page="act-on-data" style="display: none;">
+                <div class="empty-state">
+                    <h2>Act on Data</h2>
+                </div>
+            </div>
+            <div class="page-content" id="build-share" data-page="build-share" style="display: none;">
+                <div class="empty-state">
+                    <h2>Build & Share</h2>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

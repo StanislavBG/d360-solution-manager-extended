@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - MDM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-app-page" id="mainAppPage">
+        <!-- Header -->
+        <header class="header">
+            <!-- Search Bar Area (60% of header vertical space) -->
+            <div class="search-bar-area">
+                <div class="salesforce-icon">
+                    <i class="fas fa-cloud" style="color: #00a1e0; font-size: 24px;"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <i class="fas fa-bell icon-btn" title="Notifications"></i>
+                    <i class="fas fa-cog icon-btn" title="Settings"></i>
+                    <i class="fas fa-user icon-btn" title="Profile"></i>
+                </div>
+            </div>
+            
+            <!-- Top Navigation Area (40% of header vertical space) -->
+            <div class="top-navigation-area">
+                <div class="app-picker-icon" id="appPickerIcon">
+                    <i class="fas fa-th"></i>
+                    <div class="app-picker-dropdown" id="appPickerDropdown">
+                        <div class="app-option" data-app="Sales">Sales</div>
+                        <div class="app-option" data-app="Service">Service</div>
+                        <div class="app-option" data-app="Marketing">Marketing</div>
+                        <div class="app-option" data-app="Commerce">Commerce</div>
+                        <div class="app-option active" data-app="Data-360">Data 360</div>
+                    </div>
+                </div>
+                <div class="app-label" id="appLabel">Data 360</div>
+                <div class="navigation-menu-elements" id="navigationMenu">
+                    <div class="nav-tab active" data-page="home">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content-wrapper">
+            <!-- Left Navigation -->
+            <nav class="left-navigation" id="leftNavigation">
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="nav-items">
+                    <div class="nav-item" data-page="connect-unify">
+                        <i class="fas fa-link"></i>
+                        <span class="nav-label">Connect & Unify</span>
+                    </div>
+                    <div class="nav-item" data-page="govern-data">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="nav-label">Govern Data</span>
+                    </div>
+                    <div class="nav-item" data-page="process-content">
+                        <i class="fas fa-cogs"></i>
+                        <span class="nav-label">Process Content</span>
+                    </div>
+                    <div class="nav-item" data-page="query-segment">
+                        <i class="fas fa-search"></i>
+                        <span class="nav-label">Query & Segment</span>
+                    </div>
+                    <div class="nav-item" data-page="analyze-predict">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="nav-label">Analyze & Predict</span>
+                    </div>
+                    <div class="nav-item" data-page="act-on-data">
+                        <i class="fas fa-bolt"></i>
+                        <span class="nav-label">Act on Data</span>
+                    </div>
+                    <div class="nav-item" data-page="build-share">
+                        <i class="fas fa-share-alt"></i>
+                        <span class="nav-label">Build & Share</span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Page Area -->
+            <main class="main-page-area" id="mainPageArea">
+                <!-- Home Page -->
+                <div class="page" id="home-page">
+                    <div class="empty-state">
+                        <h2>Welcome to Data 360</h2>
+                        <p>Select an option from the navigation menu to get started.</p>
+                    </div>
+                </div>
+
+                <!-- Solution Manager Page -->
+                <div class="page hidden" id="solution-manager-page">
+                    <div class="solution-manager-container">
+                        <h1>Solution Manager</h1>
+                        <div class="tiles-container">
+                            <div class="tile" id="integrate-business-entities-tile">
+                                <div class="tile-content">
+                                    <h3 class="tile-title">Integrate Business Entities from Informatica in Data360</h3>
+                                    <p class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrate Business Entities Page -->
+                <div class="page hidden" id="integrate-business-entities-page">
+                    <div class="integrate-page-container">
+                        <!-- Header Instructions -->
+                        <div class="header-instructions">
+                            <h1>Integrate Business Entities from Informatica in Data360</h1>
+                            <p>Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+                        </div>
+
+                        <!-- Step Summary -->
+                        <div class="step-summary" id="stepSummary">
+                            <div class="step-summary-header">
+                                <h2>Steps</h2>
+                                <button class="collapse-btn" id="stepSummaryToggle">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="step-summary-content" id="stepSummaryContent">
+                                <div class="steps-list">
+                                    <div class="step-item" data-step="1">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Connect to Informatica System</span>
+                                    </div>
+                                    <div class="step-item" data-step="2">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Choose Business Entity</span>
+                                    </div>
+                                    <div class="step-item" data-step="3">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Review DLOs and Field Types</span>
+                                    </div>
+                                    <div class="step-item" data-step="4">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Review and Extend Mappings</span>
+                                    </div>
+                                    <div class="step-item" data-step="5">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Validate Connected data</span>
+                                    </div>
+                                    <div class="step-item" data-step="6">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Set up Identity Rules</span>
+                                    </div>
+                                    <div class="step-item" data-step="7">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Validate Identity Data</span>
+                                    </div>
+                                    <div class="step-item" data-step="8">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Enable sync to Informatica</span>
+                                    </div>
+                                    <div class="step-item" data-step="9">
+                                        <i class="step-icon fas fa-circle" data-status="not-started"></i>
+                                        <span>Setup Experiences</span>
+                                    </div>
+                                </div>
+                                <div class="video-placeholder">
+                                    <i class="fas fa-video"></i>
+                                    <p>Video Tutorial</p>
+                                    <a href="#" class="doc-link">Link to Documentation</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step Details Panels -->
+                        <div class="step-details-container">
+                            <!-- Step 1: Connect to Informatica System -->
+                            <div class="step-details-panel" data-step="1">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Connect to Informatica System</h3>
+                                        <p class="step-headline">Establish trusted connection between D360 and Informatica tenants</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(1)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Substep-1: Provide Tenant URL</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(1)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Substep-2: Provide UserName / Password</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(1)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Configure details for the Informatica tenant, so that a trusted connection between them can be provided. The important items are "User-Name" and "Password"</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Choose Business Entity -->
+                            <div class="step-details-panel" data-step="2">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Choose Business Entity</h3>
+                                        <p class="step-headline">Select the business entity from Informatica</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(2)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Insert a picker populated with a list of Informatica's primary business entities</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                    <select class="entity-picker">
+                                        <option>Customer</option>
+                                        <option>Product</option>
+                                        <option>Account</option>
+                                        <option>Contact</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Review DLOs and Field Types -->
+                            <div class="step-details-panel" data-step="3">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Review DLOs and Field Types</h3>
+                                        <p class="step-headline">Review Data Load Objects and their field types</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(3)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Review DLOs and Field Types</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Review and Extend Mappings -->
+                            <div class="step-details-panel" data-step="4">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Review and Extend Mappings</h3>
+                                        <p class="step-headline">Review and extend field mappings</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(4)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Review and Extend Mappings</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: Validate Connected data -->
+                            <div class="step-details-panel" data-step="5">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Validate Connected data</h3>
+                                        <p class="step-headline">Validate the connected data from Informatica</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(5)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Validate Connected data</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 6: Set up Identity Rules -->
+                            <div class="step-details-panel" data-step="6">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Set up Identity Rules</h3>
+                                        <p class="step-headline">Configure identity matching rules</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(6)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Set up Identity Rules</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 7: Validate Identity Data -->
+                            <div class="step-details-panel" data-step="7">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Validate Identity Data</h3>
+                                        <p class="step-headline">Validate identity matching results</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(7)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Validate Identity Data</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 8: Enable sync to Informatica -->
+                            <div class="step-details-panel" data-step="8">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Enable sync to Informatica</h3>
+                                        <p class="step-headline">Enable synchronization with Informatica</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(8)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Enable sync to Informatica</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 9: Setup Experiences -->
+                            <div class="step-details-panel" data-step="9">
+                                <div class="step-panel-header" onclick="toggleStepPanel(this)">
+                                    <div class="step-header-content">
+                                        <h3>Setup Experiences</h3>
+                                        <p class="step-headline">Configure user experiences</p>
+                                    </div>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="step-panel-body">
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(9)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Substep-1: "Search Before Create" - prevent duplicate records from being created</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(9)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Substep-2: "Copy field" - enrich operational records with enterprise attributes</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                    <div class="substep-item">
+                                        <input type="checkbox" class="substep-checkbox" onchange="updateStepStatus(9)">
+                                        <div class="substep-content">
+                                            <span class="substep-label">Substep-3: "Related List" - showcase any information related to the primary entity</span>
+                                            <a href="#" class="doc-link">Documentation</a>
+                                            <a href="#" class="tutorial-link">Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Pages -->
+                <div class="page hidden" id="connect-unify-page">
+                    <div class="empty-state">
+                        <h2>Connect & Unify</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="page hidden" id="govern-data-page">
+                    <div class="empty-state">
+                        <h2>Govern Data</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="page hidden" id="process-content-page">
+                    <div class="empty-state">
+                        <h2>Process Content</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="page hidden" id="query-segment-page">
+                    <div class="empty-state">
+                        <h2>Query & Segment</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="page hidden" id="analyze-predict-page">
+                    <div class="empty-state">
+                        <h2>Analyze & Predict</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="page hidden" id="act-on-data-page">
+                    <div class="empty-state">
+                        <h2>Act on Data</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="page hidden" id="build-share-page">
+                    <div class="empty-state">
+                        <h2>Build & Share</h2>
+                        <p>This page is coming soon.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

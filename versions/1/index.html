@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - Guided Experiences</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main App Page -->
+    <div class="main-app-page">
+        <!-- Header -->
+        <header class="header">
+            <!-- Search Bar Area (2/3 of header) -->
+            <div class="search-bar-area">
+                <div class="salesforce-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#00A1E0"/>
+                        <path d="M2 17L12 22L22 17V12L12 17L2 12V17Z" fill="#00A1E0"/>
+                    </svg>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <div class="app-icon" data-page="home">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Top Navigation Area (1/3 of header) -->
+            <div class="top-navigation-area">
+                <div class="app-picker-container">
+                    <div class="app-picker-icon" id="appPickerIcon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="5" height="5"></rect>
+                            <rect x="11" y="3" width="5" height="5"></rect>
+                            <rect x="19" y="3" width="5" height="5"></rect>
+                            <rect x="3" y="11" width="5" height="5"></rect>
+                            <rect x="11" y="11" width="5" height="5"></rect>
+                            <rect x="19" y="11" width="5" height="5"></rect>
+                            <rect x="3" y="19" width="5" height="5"></rect>
+                            <rect x="11" y="19" width="5" height="5"></rect>
+                            <rect x="19" y="19" width="5" height="5"></rect>
+                        </svg>
+                    </div>
+                    <div class="app-dropdown" id="appDropdown">
+                        <div class="app-option" data-app="Sales">Sales</div>
+                        <div class="app-option" data-app="Service">Service</div>
+                        <div class="app-option" data-app="Marketing">Marketing</div>
+                        <div class="app-option" data-app="Commerce">Commerce</div>
+                        <div class="app-option active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div class="app-label" id="appLabel">Data 360</div>
+                <div class="navigation-menu-elements">
+                    <div class="nav-tab active" data-page="home">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Left Navigation -->
+        <nav class="left-navigation" id="leftNavigation">
+            <div class="nav-toggle" id="navToggle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <div class="nav-item" data-page="connect-unify">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <span class="nav-label">Connect & Unify</span>
+            </div>
+            <div class="nav-item" data-page="govern-data">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <span class="nav-label">Govern Data</span>
+            </div>
+            <div class="nav-item" data-page="process-content">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <span class="nav-label">Process Content</span>
+            </div>
+            <div class="nav-item" data-page="query-segment">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <span class="nav-label">Query & Segment</span>
+            </div>
+            <div class="nav-item" data-page="analyze-predict">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <span class="nav-label">Analyze & Predict</span>
+            </div>
+            <div class="nav-item" data-page="act-on-data">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </div>
+                <span class="nav-label">Act on Data</span>
+            </div>
+            <div class="nav-item" data-page="build-share">
+                <div class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <span class="nav-label">Build & Share</span>
+            </div>
+        </nav>
+
+        <!-- Main Page Area -->
+        <main class="main-page-area" id="mainPageArea">
+            <div class="page-content" id="pageContent">
+                <div class="empty-state">
+                    <h2>Welcome to Data 360</h2>
+                    <p>Select an option from the navigation to get started.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
