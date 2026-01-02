@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 Solution Manager - Versions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        .versions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .version-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .version-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .version-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .version-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .version-link:hover {
+            background: #764ba2;
+        }
+        .no-versions {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Data 360 Solution Manager</h1>
+        <p class="subtitle">Select a version to view</p>
+        <div class="versions-grid" id="versions-grid">
+            <div class="no-versions">Loading versions...</div>
+        </div>
+    </div>
+    <script>
+        // Auto-detect available versions by checking for version directories
+        const versionsGrid = document.getElementById('versions-grid');
+        const versions = [];
+        
+        // Try to detect versions by attempting to load common version numbers
+        const checkVersion = async (version) => {
+            try {
+                const response = await fetch(`./versions/${version}/index.html`);
+                if (response.ok) {
+                    return version;
+                }
+            } catch (e) {
+                return null;
+            }
+            return null;
+        };
+        
+        // Check versions from 1 to 100 (adjust range as needed)
+        const checkVersions = async () => {
+            const checks = [];
+            for (let i = 1; i <= 100; i++) {
+                checks.push(checkVersion(i));
+            }
+            const results = await Promise.all(checks);
+            const foundVersions = results.filter(v => v !== null).sort((a, b) => b - a);
+            displayVersions(foundVersions);
+        };
+        
+        function displayVersions(versions) {
+            if (versions.length === 0) {
+                versionsGrid.innerHTML = '<div class="no-versions">No versions found</div>';
+                return;
+            }
+            
+            versionsGrid.innerHTML = versions.map(version => `
+                <div class="version-card">
+                    <div class="version-number">v${version}</div>
+                    <a href="./versions/${version}/index.html" class="version-link">View Version ${version}</a>
+                </div>
+            `).join('');
+        }
+        
+        checkVersions();
+    </script>
+</body>
+</html>
