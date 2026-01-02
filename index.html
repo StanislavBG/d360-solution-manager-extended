@@ -51,10 +51,24 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
+        .version-card.latest {
+            border: 3px solid #667eea;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+        }
         .version-number {
             font-size: 2em;
             font-weight: bold;
             color: #667eea;
+            margin-bottom: 10px;
+        }
+        .latest-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
             margin-bottom: 10px;
         }
         .version-link {
@@ -89,7 +103,8 @@
     <script>
         // Auto-detect available versions by checking for version directories
         const versionsGrid = document.getElementById('versions-grid');
-        const versions = [];
+        let foundVersions = [];
+        let latestVersion = null;
         
         // Try to detect versions by attempting to load common version numbers
         const checkVersion = async (version) => {
@@ -111,8 +126,18 @@
                 checks.push(checkVersion(i));
             }
             const results = await Promise.all(checks);
-            const foundVersions = results.filter(v => v !== null).sort((a, b) => b - a);
-            displayVersions(foundVersions);
+            foundVersions = results.filter(v => v !== null).sort((a, b) => b - a); // Descending order
+            
+            if (foundVersions.length > 0) {
+                latestVersion = foundVersions[0]; // Highest version number
+                displayVersions(foundVersions);
+                // Auto-redirect to latest version after a short delay
+                setTimeout(() => {
+                    window.location.href = `./versions/${latestVersion}/index.html`;
+                }, 2000);
+            } else {
+                displayVersions([]);
+            }
         };
         
         function displayVersions(versions) {
@@ -121,12 +146,16 @@
                 return;
             }
             
-            versionsGrid.innerHTML = versions.map(version => `
-                <div class="version-card">
+            versionsGrid.innerHTML = versions.map(version => {
+                const isLatest = version === latestVersion;
+                return `
+                <div class="version-card ${isLatest ? 'latest' : ''}">
+                    ${isLatest ? '<div class="latest-badge">LATEST</div>' : ''}
                     <div class="version-number">v${version}</div>
                     <a href="./versions/${version}/index.html" class="version-link">View Version ${version}</a>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
         
         checkVersions();

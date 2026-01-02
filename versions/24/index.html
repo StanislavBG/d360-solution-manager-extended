@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - Salesforce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main App Page -->
+    <div id="main-app-page">
+        <!-- Main Header -->
+        <header id="main-header">
+            <!-- Search Bar Area -->
+            <div id="search-bar-area">
+                <div id="salesforce-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M13.5 8.5C14.8 6.9 16.8 6 19 6c4.4 0 8 3.6 8 8 0 1.1-.2 2.1-.6 3.1 2.8.8 4.8 3.4 4.8 6.4 0 3.7-3 6.7-6.7 6.7-1.2 0-2.3-.3-3.3-.9-1.2 1.5-3 2.4-5 2.4-2.8 0-5.3-1.8-6.2-4.4-3.2-.3-5.7-3-5.7-6.3 0-2.8 1.8-5.2 4.4-6.1-.1-.5-.2-1-.2-1.5 0-3.9 3.1-7 7-7 2.4 0 4.5 1.2 5.8 3.1z" fill="#1798c1"/>
+                    </svg>
+                </div>
+                <div id="search-bar">
+                    <input type="text" placeholder="Search..." />
+                </div>
+                <div id="application-icons">
+                    <span class="app-icon">📊</span>
+                    <span class="app-icon">📈</span>
+                    <span class="app-icon">⚙️</span>
+                </div>
+            </div>
+
+            <!-- Top Navigation Area -->
+            <div id="top-navigation-area">
+                <div id="app-picker-container">
+                    <div id="app-picker-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20">
+                            <circle cx="3" cy="3" r="2" fill="#444"/>
+                            <circle cx="10" cy="3" r="2" fill="#444"/>
+                            <circle cx="17" cy="3" r="2" fill="#444"/>
+                            <circle cx="3" cy="10" r="2" fill="#444"/>
+                            <circle cx="10" cy="10" r="2" fill="#444"/>
+                            <circle cx="17" cy="10" r="2" fill="#444"/>
+                            <circle cx="3" cy="17" r="2" fill="#444"/>
+                            <circle cx="10" cy="17" r="2" fill="#444"/>
+                            <circle cx="17" cy="17" r="2" fill="#444"/>
+                        </svg>
+                    </div>
+                    <div id="app-picker-dropdown" class="dropdown-menu" style="display: none;">
+                        <div class="dropdown-item" data-app="Sales">Sales</div>
+                        <div class="dropdown-item" data-app="Service">Service</div>
+                        <div class="dropdown-item" data-app="Marketing">Marketing</div>
+                        <div class="dropdown-item" data-app="Commerce">Commerce</div>
+                        <div class="dropdown-item active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div id="app-label">Data 360</div>
+                <nav id="navigation-menu-elements">
+                    <div class="nav-tab active" data-page="home">Home</div>
+                    <div class="nav-tab" data-page="solution-manager">Solution Manager</div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content Area with Left Navigation and Page Area -->
+        <div id="content-container">
+            <!-- Left Navigation -->
+            <aside id="left-navigation" class="expanded">
+                <div class="nav-toggle">
+                    <span id="nav-toggle-btn">☰</span>
+                </div>
+                <div class="nav-item" data-page="connect-unify">
+                    <span class="nav-icon">🔗</span>
+                    <span class="nav-label">Connect & Unify</span>
+                </div>
+                <div class="nav-item" data-page="govern-data">
+                    <span class="nav-icon">🛡️</span>
+                    <span class="nav-label">Govern Data</span>
+                </div>
+                <div class="nav-item" data-page="process-content">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Process Content</span>
+                </div>
+                <div class="nav-item" data-page="query-segment">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-label">Query & Segment</span>
+                </div>
+                <div class="nav-item" data-page="analyze-predict">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Analyze & Predict</span>
+                </div>
+                <div class="nav-item" data-page="act-on-data">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-label">Act on Data</span>
+                </div>
+                <div class="nav-item" data-page="build-share">
+                    <span class="nav-icon">🔨</span>
+                    <span class="nav-label">Build & Share</span>
+                </div>
+            </aside>
+
+            <!-- Page Area -->
+            <main id="page-area">
+                <!-- Content will be dynamically loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
