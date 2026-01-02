@@ -46,6 +46,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            position: relative;
         }
         .version-card:hover {
             transform: translateY(-5px);
@@ -55,20 +56,23 @@
             border: 3px solid #667eea;
             background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
         }
-        .version-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        .latest-badge {
-            display: inline-block;
+        .version-card.latest::before {
+            content: 'LATEST';
+            position: absolute;
+            top: -10px;
+            right: 15px;
             background: #667eea;
             color: white;
             padding: 4px 12px;
             border-radius: 12px;
             font-size: 0.7em;
             font-weight: bold;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+        .version-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
             margin-bottom: 10px;
         }
         .version-link {
@@ -80,6 +84,7 @@
             text-decoration: none;
             border-radius: 6px;
             transition: background 0.3s ease;
+            width: 100%;
         }
         .version-link:hover {
             background: #764ba2;
@@ -90,6 +95,21 @@
             font-size: 1.2em;
             margin-top: 40px;
         }
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin-top: 40px;
+        }
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
     </style>
 </head>
 <body>
@@ -97,7 +117,7 @@
         <h1>🚀 Data 360 Solution Manager</h1>
         <p class="subtitle">Select a version to view</p>
         <div class="versions-grid" id="versions-grid">
-            <div class="no-versions">Loading versions...</div>
+            <div class="loading">Loading versions</div>
         </div>
     </div>
     <script>
@@ -131,10 +151,6 @@
             if (foundVersions.length > 0) {
                 latestVersion = foundVersions[0]; // Highest version number
                 displayVersions(foundVersions);
-                // Auto-redirect to latest version after a short delay
-                setTimeout(() => {
-                    window.location.href = `./versions/${latestVersion}/index.html`;
-                }, 2000);
             } else {
                 displayVersions([]);
             }
@@ -150,7 +166,6 @@
                 const isLatest = version === latestVersion;
                 return `
                 <div class="version-card ${isLatest ? 'latest' : ''}">
-                    ${isLatest ? '<div class="latest-badge">LATEST</div>' : ''}
                     <div class="version-number">v${version}</div>
                     <a href="./versions/${version}/index.html" class="version-link">View Version ${version}</a>
                 </div>
