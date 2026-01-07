@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - Salesforce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main App Page -->
+    <div class="main-app-page">
+        <!-- Main Header -->
+        <header class="main-header">
+            <!-- Search Bar Area -->
+            <div class="search-bar-area">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" alt="Salesforce" class="salesforce-icon">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." disabled>
+                </div>
+                <div class="application-icons">
+                    <span class="app-icon">⚙️</span>
+                    <span class="app-icon">🔔</span>
+                    <span class="app-icon">👤</span>
+                </div>
+            </div>
+
+            <!-- Top Navigation Area -->
+            <div class="top-navigation-area">
+                <div class="app-picker-container">
+                    <button class="app-picker-icon" id="appPickerBtn">
+                        <div class="dots-grid">
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                        </div>
+                    </button>
+                    <div class="app-dropdown" id="appDropdown">
+                        <div class="app-option" data-app="Sales">Sales</div>
+                        <div class="app-option" data-app="Service">Service</div>
+                        <div class="app-option" data-app="Marketing">Marketing</div>
+                        <div class="app-option" data-app="Commerce">Commerce</div>
+                        <div class="app-option active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <span class="app-label" id="appLabel">Data 360</span>
+                <nav class="navigation-menu-elements">
+                    <button class="nav-tab active" data-page="home">Home</button>
+                    <button class="nav-tab" data-page="solution-manager">Solution Manager</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content Container -->
+        <div class="content-container">
+            <!-- Left Navigation -->
+            <aside class="left-navigation" id="leftNav">
+                <button class="collapse-btn" id="collapseBtn">
+                    <span>◀</span>
+                </button>
+                <nav class="nav-items">
+                    <button class="nav-item" data-page="connect-unify">
+                        <span class="icon">🔗</span>
+                        <span class="label">Connect & Unify</span>
+                    </button>
+                    <button class="nav-item" data-page="govern-data">
+                        <span class="icon">🛡️</span>
+                        <span class="label">Govern Data</span>
+                    </button>
+                    <button class="nav-item" data-page="process-content">
+                        <span class="icon">⚙️</span>
+                        <span class="label">Process Content</span>
+                    </button>
+                    <button class="nav-item" data-page="query-segment">
+                        <span class="icon">🔍</span>
+                        <span class="label">Query & Segment</span>
+                    </button>
+                    <button class="nav-item" data-page="analyze-predict">
+                        <span class="icon">📊</span>
+                        <span class="label">Analyze & Predict</span>
+                    </button>
+                    <button class="nav-item" data-page="act-on-data">
+                        <span class="icon">⚡</span>
+                        <span class="label">Act on Data</span>
+                    </button>
+                    <button class="nav-item" data-page="build-share">
+                        <span class="icon">🔧</span>
+                        <span class="label">Build & Share</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Page Area -->
+            <main class="page-area" id="pageArea">
+                <!-- Pages will be dynamically loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
