@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - Salesforce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="main-app">
+        <!-- Main Header -->
+        <header id="main-header">
+            <!-- Search Bar Area -->
+            <div id="search-bar-area">
+                <div class="salesforce-icon">
+                    <img src="https://www.salesforce.com/content/dam/sfdc-docs/www/logos/logo-salesforce.svg" alt="Salesforce" />
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." />
+                </div>
+                <div class="application-icons">
+                    <span class="app-icon">🔔</span>
+                    <span class="app-icon">⚙️</span>
+                    <span class="app-icon">👤</span>
+                </div>
+            </div>
+
+            <!-- Top Navigation Area -->
+            <div id="top-navigation-area">
+                <div class="app-picker-container">
+                    <button id="app-picker-icon" class="app-picker-icon">⋮⋮⋮</button>
+                    <div id="app-dropdown" class="app-dropdown hidden">
+                        <div class="app-option" data-app="Sales">Sales</div>
+                        <div class="app-option" data-app="Service">Service</div>
+                        <div class="app-option" data-app="Marketing">Marketing</div>
+                        <div class="app-option" data-app="Commerce">Commerce</div>
+                        <div class="app-option active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div id="app-label">Data 360</div>
+                <nav id="navigation-menu-elements">
+                    <button class="nav-tab active" data-page="home">Home</button>
+                    <button class="nav-tab" data-page="solution-manager">Solution Manager</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div id="content-container">
+            <!-- Left Navigation -->
+            <aside id="left-navigation" class="expanded">
+                <button id="nav-toggle" class="nav-toggle">◀</button>
+                <nav class="nav-items">
+                    <button class="nav-item" data-page="connect-unify">
+                        <span class="nav-icon">🔗</span>
+                        <span class="nav-label">Connect & Unify</span>
+                    </button>
+                    <button class="nav-item" data-page="govern-data">
+                        <span class="nav-icon">🛡️</span>
+                        <span class="nav-label">Govern Data</span>
+                    </button>
+                    <button class="nav-item" data-page="process-content">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Process Content</span>
+                    </button>
+                    <button class="nav-item" data-page="query-segment">
+                        <span class="nav-icon">🔍</span>
+                        <span class="nav-label">Query & Segment</span>
+                    </button>
+                    <button class="nav-item" data-page="analyze-predict">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">Analyze & Predict</span>
+                    </button>
+                    <button class="nav-item" data-page="act-on-data">
+                        <span class="nav-icon">⚡</span>
+                        <span class="nav-label">Act on Data</span>
+                    </button>
+                    <button class="nav-item" data-page="build-share">
+                        <span class="nav-icon">🔧</span>
+                        <span class="nav-label">Build & Share</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Page Area -->
+            <main id="page-area">
+                <!-- Content will be dynamically loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
