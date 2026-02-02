@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 - Salesforce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div id="main-app-page">
+        <!-- Main Header (15% of vertical space) -->
+        <header id="main-header">
+            <!-- Search Bar Area (60% of header) -->
+            <div id="search-bar-area">
+                <div class="salesforce-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" alt="Salesforce" />
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." />
+                </div>
+                <div class="application-icons">
+                    <span class="app-icon">📋</span>
+                    <span class="app-icon">🔔</span>
+                    <span class="app-icon">👤</span>
+                </div>
+            </div>
+
+            <!-- Top Navigation Area (40% of header) -->
+            <div id="top-navigation-area">
+                <div class="app-picker-container">
+                    <button id="app-picker-icon" class="app-picker-btn">
+                        <span class="dots-grid">⋮⋮⋮</span>
+                    </button>
+                    <div id="app-dropdown" class="app-dropdown hidden">
+                        <div class="app-item" data-app="Sales">Sales</div>
+                        <div class="app-item" data-app="Service">Service</div>
+                        <div class="app-item" data-app="Marketing">Marketing</div>
+                        <div class="app-item" data-app="Commerce">Commerce</div>
+                        <div class="app-item active" data-app="Data 360">Data 360</div>
+                    </div>
+                </div>
+                <div id="app-label">Data 360</div>
+                <nav id="navigation-menu-elements">
+                    <button class="nav-tab active" data-page="home">Home</button>
+                    <button class="nav-tab" data-page="solution-manager">Solution Manager</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content Area Container -->
+        <div id="content-container">
+            <!-- Left Navigation (15% of horizontal space when expanded) -->
+            <nav id="left-navigation" class="expanded">
+                <button id="nav-toggle" class="nav-toggle-btn">☰</button>
+                <div class="nav-items">
+                    <div class="nav-item" data-page="connect-unify">
+                        <span class="nav-icon">🔗</span>
+                        <span class="nav-label">Connect & Unify</span>
+                    </div>
+                    <div class="nav-item" data-page="govern-data">
+                        <span class="nav-icon">🛡️</span>
+                        <span class="nav-label">Govern Data</span>
+                    </div>
+                    <div class="nav-item" data-page="process-content">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Process Content</span>
+                    </div>
+                    <div class="nav-item" data-page="query-segment">
+                        <span class="nav-icon">🔍</span>
+                        <span class="nav-label">Query & Segment</span>
+                    </div>
+                    <div class="nav-item" data-page="analyze-predict">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">Analyze & Predict</span>
+                    </div>
+                    <div class="nav-item" data-page="act-on-data">
+                        <span class="nav-icon">⚡</span>
+                        <span class="nav-label">Act on Data</span>
+                    </div>
+                    <div class="nav-item" data-page="build-share">
+                        <span class="nav-icon">🔨</span>
+                        <span class="nav-label">Build & Share</span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Area (Dynamic content display) -->
+            <main id="page-area">
+                <!-- Home Page (Default) -->
+                <div id="home-page" class="page active"></div>
+
+                <!-- Solution Manager Page -->
+                <div id="solution-manager-page" class="page">
+                    <div class="page-content">
+                        <h1 class="page-title">Solution Manager</h1>
+                        <div class="tiles-container">
+                            <div class="tile" data-tile="integrate-business-entities">
+                                <h3 class="tile-title">Integrate Business Entities from Informatica in Data 360</h3>
+                                <p class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work though the steps required to operationalize business entities created in Informatica in D360</p>
+                            </div>
+                            <div class="tile" data-tile="customer-households">
+                                <h3 class="tile-title">Integrate and expand CRM Households in Data 360</h3>
+                                <p class="tile-description">Enable Analytics, Marketing and Agentic experiences for your existing Customer Households. Extend the Household profile with engagement data from other systems though Unified Individuals and Household link Rules.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Pages -->
+                <div id="connect-unify-page" class="page placeholder-page"></div>
+                <div id="govern-data-page" class="page placeholder-page"></div>
+                <div id="process-content-page" class="page placeholder-page"></div>
+                <div id="query-segment-page" class="page placeholder-page"></div>
+                <div id="analyze-predict-page" class="page placeholder-page"></div>
+                <div id="act-on-data-page" class="page placeholder-page"></div>
+                <div id="build-share-page" class="page placeholder-page"></div>
+
+                <!-- Customer Households Page (Work in Progress) -->
+                <div id="customer-households-page" class="page">
+                    <div class="page-content work-in-progress">
+                        <h1>WORK IN PROGRESS</h1>
+                    </div>
+                </div>
+
+                <!-- Integrate Business Entities Page (DF Version) -->
+                <div id="integrate-business-entities-df-page" class="page solution-page"></div>
+
+                <!-- Integrate Business Entities Page (262 Version) -->
+                <div id="integrate-business-entities-262-page" class="page solution-page"></div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
