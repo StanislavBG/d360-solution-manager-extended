@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data 360 Solution Manager</title>
+    <style>
+        /* ============================================
+           GLOBAL STYLES & RESET
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F3F3F3;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ============================================
+           $MAIN-APP-PAGE - Root Container
+           ============================================ */
+        #main-app-page {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ============================================
+           $MAIN-HEADER - 15% VH
+           ============================================ */
+        #main-header {
+            height: 15vh;
+            min-height: 90px;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #DDDBDA;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* $Search-Bar-Area - 60% of Header */
+        #search-bar-area {
+            height: 60%;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .sf-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00A1E0 0%, #0070D2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        #search-bar {
+            flex: 1;
+            max-width: 600px;
+            height: 36px;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            padding: 0 12px 0 36px;
+            background-color: #F3F3F3;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23706E6B' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            color: #706E6B;
+            font-size: 14px;
+        }
+
+        #search-bar:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .application-icons {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .app-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 18px;
+        }
+
+        .app-icon:hover {
+            background-color: #F3F3F3;
+        }
+
+        /* $Top-Navigation-Area - 40% of Header */
+        #top-navigation-area {
+            height: 40%;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 20px;
+            border-top: 1px solid #F3F3F3;
+        }
+
+        /* $App-Picker */
+        .app-picker-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .app-picker-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            padding: 3px;
+        }
+
+        .app-picker-icon span {
+            background-color: #0070D2;
+            border-radius: 1px;
+            transition: background-color 0.2s;
+        }
+
+        .app-picker-icon:hover span {
+            background-color: #005FB2;
+        }
+
+        .app-picker-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background-color: white;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            min-width: 200px;
+            overflow: hidden;
+        }
+
+        .app-picker-dropdown.show {
+            display: block;
+        }
+
+        .app-picker-dropdown div {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 14px;
+            color: #181818;
+        }
+
+        .app-picker-dropdown div:hover {
+            background-color: #F3F3F3;
+        }
+
+        .app-picker-dropdown div.active {
+            background-color: #E8F4FF;
+            color: #0070D2;
+            font-weight: 600;
+        }
+
+        #app-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #181818;
+        }
+
+        /* $Navigation-Menu-Elements */
+        .navigation-menu {
+            display: flex;
+            gap: 8px;
+            margin-left: 40px;
+        }
+
+        .nav-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            color: #181818;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            margin-bottom: -1px;
+        }
+
+        .nav-tab:hover {
+            color: #0070D2;
+            background-color: #F3F3F3;
+        }
+
+        .nav-tab.active {
+            border-bottom-color: #0070D2;
+            color: #0070D2;
+        }
+
+        /* ============================================
+           CONTENT CONTAINER (85% VH)
+           ============================================ */
+        #content-container {
+            display: flex;
+            height: 85vh;
+        }
+
+        /* ============================================
+           $LEFT-NAVIGATION - 15% VW
+           ============================================ */
+        #left-navigation {
+            width: 15vw;
+            min-width: 200px;
+            background-color: #FFFFFF;
+            border-right: 1px solid #DDDBDA;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease, min-width 0.3s ease;
+            overflow: hidden;
+        }
+
+        #left-navigation.collapsed {
+            width: 56px;
+            min-width: 56px;
+        }
+
+        .nav-toggle {
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #F3F3F3;
+            transition: background-color 0.2s;
+        }
+
+        .nav-toggle:hover {
+            background-color: #F3F3F3;
+        }
+
+        .nav-toggle-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #181818;
+            white-space: nowrap;
+        }
+
+        .nav-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #3E3E3C;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: #F3F3F3;
+            color: #0070D2;
+        }
+
+        .nav-item.active {
+            background-color: #E8F4FF;
+            color: #0070D2;
+            border-left-color: #0070D2;
+        }
+
+        .nav-item-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            color: #706E6B;
+        }
+
+        .nav-item:hover .nav-item-icon,
+        .nav-item.active .nav-item-icon {
+            color: #0070D2;
+        }
+
+        .nav-item-label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #left-navigation.collapsed .nav-item-label,
+        #left-navigation.collapsed .nav-toggle-label {
+            display: none;
+        }
+
+        #left-navigation.collapsed .nav-item {
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        #left-navigation.collapsed .nav-toggle {
+            justify-content: center;
+        }
+
+        /* ============================================
+           $PAGE-AREA - Dynamic Content Host
+           ============================================ */
+        #page-area {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: #F3F3F3;
+        }
+
+        /* ============================================
+           $HOME-DATA-360-PAGE - Empty State
+           ============================================ */
+        .home-page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #F3F3F3;
+        }
+
+        .home-empty-state {
+            text-align: center;
+            color: #706E6B;
+        }
+
+        .home-empty-state h2 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 8px;
+            color: #3E3E3C;
+        }
+
+        .home-empty-state p {
+            font-size: 14px;
+        }
+
+        /* ============================================
+           $SOLUTION-MANAGER-PAGE
+           ============================================ */
+        .solution-manager-page {
+            padding: 30px;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: #181818;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #706E6B;
+        }
+
+        /* $Solution-Manager-Tiles */
+        .solution-tiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .solution-tile {
+            background-color: white;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .solution-tile:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #0070D2;
+            transform: translateY(-2px);
+        }
+
+        .tile-badge {
+            display: inline-block;
+            background-color: #E8F4FF;
+            color: #0070D2;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .tile-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0070D2;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .tile-description {
+            font-size: 14px;
+            color: #3E3E3C;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           $SOLUTION-MANAGER-PAGES-TEMPLATE
+           ============================================ */
+        .solution-template-page {
+            background-color: #F3F3F3;
+            min-height: 100%;
+        }
+
+        /* $Header-Instructions */
+        .template-header {
+            background-color: white;
+            padding: 24px 30px;
+            border-bottom: 1px solid #DDDBDA;
+        }
+
+        .template-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #181818;
+            margin-bottom: 8px;
+        }
+
+        .template-headline {
+            font-size: 14px;
+            color: #706E6B;
+            line-height: 1.5;
+        }
+
+        .template-content {
+            display: flex;
+            padding: 24px 30px;
+            gap: 30px;
+        }
+
+        /* ============================================
+           $STEP-SUMMARY
+           ============================================ */
+        .step-summary {
+            width: 320px;
+            flex-shrink: 0;
+            background-color: white;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .step-summary.collapsed {
+            max-height: calc(15vh * 0.4);
+        }
+
+        .summary-header {
+            padding: 16px 20px;
+            background-color: #FAFAF9;
+            border-bottom: 1px solid #DDDBDA;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .summary-header:hover {
+            background-color: #F3F3F3;
+        }
+
+        .summary-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #181818;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-toggle {
+            font-size: 12px;
+            color: #706E6B;
+            transition: transform 0.3s;
+        }
+
+        .step-summary.collapsed .summary-toggle {
+            transform: rotate(180deg);
+        }
+
+        .summary-content {
+            max-height: 400px;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+        }
+
+        .step-summary.collapsed .summary-content {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .step-indicators {
+            padding: 12px 0;
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .step-indicator:hover {
+            background-color: #F3F3F3;
+        }
+
+        .step-indicator.active {
+            background-color: #E8F4FF;
+        }
+
+        /* Step Status Icons */
+        .step-status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        /* Not Started - Empty Circle */
+        .step-indicator.not-started .step-status-icon {
+            border: 2px solid #DDDBDA;
+            background-color: white;
+        }
+
+        /* In Progress - Half-filled Circle */
+        .step-indicator.in-progress .step-status-icon {
+            border: 2px solid #0070D2;
+            background: linear-gradient(90deg, #0070D2 50%, white 50%);
+        }
+
+        /* Completed - Checkmark */
+        .step-indicator.completed .step-status-icon {
+            border: 2px solid #2E844A;
+            background-color: #2E844A;
+            color: white;
+        }
+
+        .step-indicator-label {
+            font-size: 14px;
+            color: #181818;
+            flex: 1;
+        }
+
+        .step-indicator.completed .step-indicator-label {
+            color: #2E844A;
+        }
+
+        .step-indicator.in-progress .step-indicator-label {
+            color: #0070D2;
+            font-weight: 600;
+        }
+
+        /* Video Placeholder */
+        .video-placeholder {
+            margin: 20px;
+            background-color: #F3F3F3;
+            border: 2px dashed #DDDBDA;
+            border-radius: 8px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #706E6B;
+        }
+
+        .video-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .video-placeholder-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           $STEP-DETAILS-CONTAINER
+           ============================================ */
+        .step-details-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* $Step-Details-Template */
+        .step-detail {
+            background-color: white;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Collapsed height = same as $Top-Navigation-Area (40% of 15vh) */
+        .step-detail-header {
+            height: calc(15vh * 0.4);
+            min-height: 48px;
+            padding: 0 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FAFAF9;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .step-detail.expanded .step-detail-header {
+            background-color: white;
+            border-bottom-color: #DDDBDA;
+        }
+
+        .step-detail-header:hover {
+            background-color: #F3F3F3;
+        }
+
+        .step-detail.expanded .step-detail-header:hover {
+            background-color: #FAFAF9;
+        }
+
+        .step-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background-color: #0070D2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-detail.completed .step-number {
+            background-color: #2E844A;
+        }
+
+        .step-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .step-detail-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #181818;
+        }
+
+        .step-detail-headline {
+            font-size: 13px;
+            color: #706E6B;
+        }
+
+        .step-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .step-progress-count {
+            font-size: 13px;
+            color: #706E6B;
+        }
+
+        .step-expand-icon {
+            font-size: 12px;
+            color: #706E6B;
+            transition: transform 0.3s;
+        }
+
+        .step-detail.expanded .step-expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Expanded height = 3x Collapsed height */
+        .step-detail-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .step-detail.expanded .step-detail-body {
+            max-height: calc(15vh * 0.4 * 3);
+            min-height: 200px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .step-detail-content {
+            padding: 24px;
+        }
+
+        /* $Step-Detail-Footer */
+        .step-detail-footer {
+            padding: 16px 24px;
+            background-color: #FAFAF9;
+            border-top: 1px solid #DDDBDA;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: #0070D2;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #0070D2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #005FB2;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #0070D2;
+            border: 1px solid #DDDBDA;
+        }
+
+        .btn-secondary:hover {
+            background-color: #F3F3F3;
+            border-color: #0070D2;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ============================================
+           FORM ELEMENTS
+           ============================================ */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #181818;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0070D2;
+            box-shadow: 0 0 0 3px rgba(0, 112, 210, 0.15);
+        }
+
+        /* Multi-select Picker */
+        .picker-section {
+            margin-bottom: 24px;
+        }
+
+        .picker-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #181818;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checkbox-item:hover {
+            background-color: #F3F3F3;
+            border-color: #0070D2;
+        }
+
+        .checkbox-item.selected {
+            background-color: #E8F4FF;
+            border-color: #0070D2;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #0070D2;
+        }
+
+        .checkbox-item label {
+            font-size: 14px;
+            color: #181818;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .radio-item:hover {
+            border-color: #0070D2;
+            background-color: #F3F3F3;
+        }
+
+        .radio-item.selected {
+            border-color: #0070D2;
+            background-color: #E8F4FF;
+        }
+
+        .radio-item input[type="radio"] {
+            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #0070D2;
+        }
+
+        .radio-content {
+            flex: 1;
+        }
+
+        .radio-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #181818;
+            margin-bottom: 4px;
+        }
+
+        .radio-description {
+            font-size: 13px;
+            color: #706E6B;
+            line-height: 1.5;
+        }
+
+        /* Table List */
+        .table-list {
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .table-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid #DDDBDA;
+            background-color: white;
+            transition: background-color 0.2s;
+        }
+
+        .table-item:last-child {
+            border-bottom: none;
+        }
+
+        .table-item:hover {
+            background-color: #FAFAF9;
+        }
+
+        .table-name {
+            font-size: 14px;
+            color: #181818;
+            font-weight: 500;
+        }
+
+        /* Toggle Switch */
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background-color: #FAFAF9;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background-color: #DDDBDA;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-switch.active {
+            background-color: #2E844A;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            color: #181818;
+            font-weight: 500;
+        }
+
+        /* Sub-steps List */
+        .substeps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .substep-item {
+            background-color: #FAFAF9;
+            border: 1px solid #DDDBDA;
+            border-radius: 4px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .substep-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #181818;
+        }
+
+        .substep-link {
+            color: #0070D2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .substep-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Steps for 262 version */
+        .step-description {
+            font-size: 14px;
+            color: #706E6B;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .step-link {
+            color: #0070D2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .step-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           SPINNER
+           ============================================ */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .spinner-dark {
+            border-color: rgba(0,112,210,0.3);
+            border-top-color: #0070D2;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================
+           NOTIFICATION
+           ============================================ */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #DDDBDA;
+            border-left: 4px solid #0070D2;
+            border-radius: 4px;
+            padding: 16px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 2000;
+            display: none;
+            min-width: 280px;
+        }
+
+        .notification.show {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification.success {
+            border-left-color: #2E844A;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+        }
+
+        .notification-message {
+            font-size: 14px;
+            color: #181818;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+           WIP MESSAGE
+           ============================================ */
+        .wip-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            padding: 60px;
+        }
+
+        .wip-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .wip-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #181818;
+            margin-bottom: 12px;
+        }
+
+        .wip-subtitle {
+            font-size: 16px;
+            color: #706E6B;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .hidden {
+            display: none !important;
+        }
+
+        .mt-16 {
+            margin-top: 16px;
+        }
+
+        .mt-24 {
+            margin-top: 24px;
+        }
+
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-app-page">
+        <!-- ============================================
+             $MAIN-HEADER
+             ============================================ -->
+        <header id="main-header">
+            <!-- $Search-Bar-Area -->
+            <div id="search-bar-area">
+                <div class="sf-logo">SF</div>
+                <input type="text" id="search-bar" placeholder="Search Salesforce" disabled>
+                <div class="application-icons">
+                    <div class="app-icon" title="Notifications">&#128276;</div>
+                    <div class="app-icon" title="Settings">&#9881;</div>
+                    <div class="app-icon" title="User">&#128100;</div>
+                </div>
+            </div>
+
+            <!-- $Top-Navigation-Area -->
+            <nav id="top-navigation-area">
+                <div class="app-picker-wrapper">
+                    <div class="app-picker-icon" id="app-picker-icon" onclick="toggleAppPicker()">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="app-picker-dropdown" id="app-picker-dropdown">
+                        <div data-app="Sales">Sales</div>
+                        <div data-app="Service">Service</div>
+                        <div data-app="Marketing">Marketing</div>
+                        <div data-app="Commerce">Commerce</div>
+                        <div data-app="Data-360" class="active">Data 360</div>
+                    </div>
+                </div>
+                <div id="app-label">Data 360</div>
+                <div class="navigation-menu">
+                    <div class="nav-tab active" data-page="home" onclick="navigateToPage('home')">Home</div>
+                    <div class="nav-tab" data-page="solution-manager" onclick="navigateToPage('solution-manager')">Solution Manager</div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ============================================
+             CONTENT CONTAINER
+             ============================================ -->
+        <div id="content-container">
+            <!-- $LEFT-NAVIGATION -->
+            <aside id="left-navigation">
+                <div class="nav-toggle" onclick="toggleLeftNav()">
+                    <div class="nav-toggle-icon">&#9776;</div>
+                    <span class="nav-toggle-label">Menu</span>
+                </div>
+                <div class="nav-items">
+                    <div class="nav-item" data-section="connect-unify">
+                        <div class="nav-item-icon">&#128279;</div>
+                        <span class="nav-item-label">Connect & Unify</span>
+                    </div>
+                    <div class="nav-item" data-section="govern-data">
+                        <div class="nav-item-icon">&#128737;</div>
+                        <span class="nav-item-label">Govern Data</span>
+                    </div>
+                    <div class="nav-item" data-section="process-content">
+                        <div class="nav-item-icon">&#128196;</div>
+                        <span class="nav-item-label">Process Content</span>
+                    </div>
+                    <div class="nav-item" data-section="query-segment">
+                        <div class="nav-item-icon">&#128269;</div>
+                        <span class="nav-item-label">Query & Segment</span>
+                    </div>
+                    <div class="nav-item" data-section="analyze-predict">
+                        <div class="nav-item-icon">&#128200;</div>
+                        <span class="nav-item-label">Analyze & Predict</span>
+                    </div>
+                    <div class="nav-item" data-section="act-on-data">
+                        <div class="nav-item-icon">&#9889;</div>
+                        <span class="nav-item-label">Act on Data</span>
+                    </div>
+                    <div class="nav-item" data-section="build-share">
+                        <div class="nav-item-icon">&#128736;</div>
+                        <span class="nav-item-label">Build & Share</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- $PAGE-AREA -->
+            <main id="page-area">
+                <!-- $Home-Data-360-Page -->
+                <div id="home-page" class="home-page">
+                    <div class="home-empty-state">
+                        <h2>Welcome to Data 360</h2>
+                        <p>Select Solution Manager to get started</p>
+                    </div>
+                </div>
+
+                <!-- $Solution-Manager-Page -->
+                <div id="solution-manager-page" class="solution-manager-page hidden">
+                    <div class="page-header">
+                        <div class="page-title">Solution Manager</div>
+                        <div class="page-subtitle">Explore and implement data management solutions</div>
+                    </div>
+                    <div class="solution-tiles">
+                        <!-- [262] Tile -->
+                        <div class="solution-tile" onclick="navigateToSolution('262')">
+                            <div class="tile-badge">[262]</div>
+                            <div class="tile-title">Integrate Business Entities from Informatica</div>
+                            <div class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work through the steps required to operationalize business entities created in Informatica in D360.</div>
+                        </div>
+                        <!-- [DF] Tile -->
+                        <div class="solution-tile" onclick="navigateToSolution('DF')">
+                            <div class="tile-badge">[DF]</div>
+                            <div class="tile-title">Integrate Business Entities from Informatica</div>
+                            <div class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work through the steps required to operationalize business entities created in Informatica in D360.</div>
+                        </div>
+                        <!-- [CH] Tile -->
+                        <div class="solution-tile" onclick="navigateToSolution('CH')">
+                            <div class="tile-badge">[CH]</div>
+                            <div class="tile-title">Integrate and expand CRM Households in Data 360</div>
+                            <div class="tile-description">Enable Analytics, Marketing and Agentic experiences for your existing Customer Households. Extend the Household profile with engagement data from other systems through Unified Individuals and Household link Rules.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- $[262]-Page -->
+                <div id="page-262" class="solution-template-page hidden">
+                    <div class="template-header">
+                        <div class="template-title">Integrate Business Entities from Informatica</div>
+                        <div class="template-headline">Follow the steps below to configure your Informatica integration with Data 360</div>
+                    </div>
+                    <div class="template-content">
+                        <div class="step-summary" id="summary-262">
+                            <div class="summary-header" onclick="toggleSummary('262')">
+                                <span class="summary-title">Steps</span>
+                                <span class="summary-toggle">&#9660;</span>
+                            </div>
+                            <div class="summary-content">
+                                <div class="step-indicators" id="indicators-262"></div>
+                                <div class="video-placeholder">
+                                    <div class="video-placeholder-icon">&#9654;</div>
+                                    <div class="video-placeholder-text">Tutorial Video</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-details-container" id="steps-262"></div>
+                    </div>
+                </div>
+
+                <!-- $[DF]-Page -->
+                <div id="page-DF" class="solution-template-page hidden">
+                    <div class="template-header">
+                        <div class="template-title">Integrate Business Entities from Informatica</div>
+                        <div class="template-headline">Configure your Informatica connection and data integration settings</div>
+                    </div>
+                    <div class="template-content">
+                        <div class="step-summary" id="summary-DF">
+                            <div class="summary-header" onclick="toggleSummary('DF')">
+                                <span class="summary-title">Steps</span>
+                                <span class="summary-toggle">&#9660;</span>
+                            </div>
+                            <div class="summary-content">
+                                <div class="step-indicators" id="indicators-DF"></div>
+                                <div class="video-placeholder">
+                                    <div class="video-placeholder-icon">&#9654;</div>
+                                    <div class="video-placeholder-text">Tutorial Video</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-details-container" id="steps-DF"></div>
+                    </div>
+                </div>
+
+                <!-- $Customer-Households-Page (WIP) -->
+                <div id="page-CH" class="solution-template-page hidden">
+                    <div class="wip-container">
+                        <div class="wip-icon">&#128679;</div>
+                        <div class="wip-title">WORK IN PROGRESS</div>
+                        <div class="wip-subtitle">This solution is currently under development</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span class="notification-icon">&#10004;</span>
+        <span class="notification-message" id="notification-message"></span>
+    </div>
+
+    <script>
+        // ============================================
+        // APPLICATION STATE
+        // ============================================
+        const state = {
+            currentApp: 'Data-360',
+            currentPage: 'home',
+            currentSolution: null,
+            stepProgress: {
+                '262': {},
+                'DF': {}
+            }
+        };
+
+        // ============================================
+        // SOLUTION DEFINITIONS
+        // ============================================
+        const solutions = {
+            '262': [
+                {
+                    title: 'Solution Guide',
+                    headline: 'Overview and documentation',
+                    description: 'View required steps and documentation for integrating business entities.',
+                    link: 'https://help.salesforce.com/data360'
+                },
+                {
+                    title: 'Create Ingestion End-Point',
+                    headline: 'API Configuration',
+                    description: 'Setup Ingestion-API end-point via D360-Setup.',
+                    action: 'Configure End-Point'
+                },
+                {
+                    title: 'Create Schema',
+                    headline: 'Schema Registration',
+                    description: 'Register business entities with predefined schema.',
+                    action: 'Define Schema'
+                },
+                {
+                    title: 'Business Entity to Lake',
+                    headline: 'Extensibility Packages',
+                    description: 'Install Informatica Extensibility Packages.',
+                    action: 'Install Packages'
+                },
+                {
+                    title: 'Publish Day 0',
+                    headline: 'Initial Data Load',
+                    description: 'Initial data load from Informatica to D360.',
+                    action: 'Start Initial Load'
+                },
+                {
+                    title: 'Publish Day 1',
+                    headline: 'Change Data Capture',
+                    description: 'CDC (Change Data Capture) feed enabled.',
+                    action: 'Enable CDC'
+                },
+                {
+                    title: 'BYO MDM',
+                    headline: 'External MDM Integration',
+                    description: 'Populate data mastered in external MDM.',
+                    action: 'Configure MDM'
+                }
+            ],
+            'DF': [
+                {
+                    title: 'Connect to Informatica System',
+                    headline: 'Establish connection with credentials',
+                    type: 'form',
+                    fields: [
+                        { name: 'Connection Name', type: 'text', placeholder: 'Enter connection name' },
+                        { name: 'Tenant URL', type: 'text', placeholder: 'https://your-tenant.informatica.com' },
+                        { name: 'Username', type: 'text', placeholder: 'Enter username' },
+                        { name: 'Password', type: 'password', placeholder: 'Enter password' }
+                    ]
+                },
+                {
+                    title: 'Choose Business Entity',
+                    headline: 'Select entities to integrate',
+                    type: 'multiselect',
+                    groups: [
+                        { name: 'Tenants', options: ['USA-1', 'Europe-1'] },
+                        { name: 'Entities', options: ['Customer', 'Product', 'Supplier'] }
+                    ]
+                },
+                {
+                    title: 'Choose Identity Resolution',
+                    headline: 'Select resolution method',
+                    type: 'radio',
+                    options: [
+                        { label: 'Direct Mapping', description: 'Use direct field mapping for identity resolution. Best for clean, well-structured data with consistent identifiers.' },
+                        { label: 'Golden Key-Ring', description: 'Use Golden Key-Ring approach for advanced identity resolution. Recommended for complex data with multiple source systems.' }
+                    ]
+                },
+                {
+                    title: 'Review Mappings',
+                    headline: 'Validate data object mappings',
+                    type: 'table-list',
+                    tables: ['Customer_Base', 'Customer_Address', 'Customer_Contact', 'Product_Master', 'Product_Category', 'Product_Pricing', 'Supplier_Base', 'Supplier_Location', 'Order_Header', 'Order_Line', 'Payment_Info', 'Inventory_Stock']
+                },
+                {
+                    title: 'Validate Connected Data',
+                    headline: 'Preview integrated data',
+                    type: 'preview',
+                    items: [
+                        { name: 'Customer Data Preview', description: 'Preview customer records from Informatica' },
+                        { name: 'Product Data Preview', description: 'Preview product catalog data' },
+                        { name: 'Supplier Data Preview', description: 'Preview supplier information' }
+                    ]
+                },
+                {
+                    title: 'Set up Identity Rules',
+                    headline: 'Configure match rules',
+                    type: 'rules-list',
+                    rules: [
+                        { name: 'Fuzzy Name Match', description: 'Match records based on similar names' },
+                        { name: 'Email Exact Match', description: 'Match records with identical email addresses' },
+                        { name: 'Phone Number Match', description: 'Match records by phone number normalization' },
+                        { name: 'Address Similarity', description: 'Match records by address components' }
+                    ]
+                },
+                {
+                    title: 'Enable Sync',
+                    headline: 'Configure synchronization',
+                    type: 'toggle',
+                    description: 'Enable automatic synchronization with Informatica. When enabled, changes in your Informatica system will be automatically reflected in Data 360.'
+                },
+                {
+                    title: 'Setup Experiences',
+                    headline: 'Configure user experiences',
+                    type: 'substeps',
+                    substeps: [
+                        { name: 'Search Before Create', link: 'https://trailhead.salesforce.com/sbc', description: 'Enable duplicate checking before record creation' },
+                        { name: 'Copy Field Values', link: 'https://trailhead.salesforce.com/copy', description: 'Configure automatic field value population' },
+                        { name: 'Add Related List', link: 'https://trailhead.salesforce.com/related', description: 'Display related records from Informatica' }
+                    ]
+                }
+            ]
+        };
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        function init() {
+            renderSolution('262');
+            renderSolution('DF');
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                const appPicker = document.querySelector('.app-picker-wrapper');
+                if (!appPicker.contains(e.target)) {
+                    document.getElementById('app-picker-dropdown').classList.remove('show');
+                }
+            });
+        }
+
+        // ============================================
+        // NAVIGATION FUNCTIONS
+        // ============================================
+        function toggleAppPicker() {
+            event.stopPropagation();
+            document.getElementById('app-picker-dropdown').classList.toggle('show');
+        }
+
+        function selectApp(appName) {
+            state.currentApp = appName;
+            document.getElementById('app-label').textContent = appName.replace('-', ' ');
+
+            document.querySelectorAll('.app-picker-dropdown div').forEach(div => {
+                div.classList.remove('active');
+                if (div.dataset.app === appName) {
+                    div.classList.add('active');
+                }
+            });
+
+            document.getElementById('app-picker-dropdown').classList.remove('show');
+        }
+
+        function toggleLeftNav() {
+            document.getElementById('left-navigation').classList.toggle('collapsed');
+        }
+
+        function navigateToPage(page) {
+            state.currentPage = page;
+            state.currentSolution = null;
+
+            // Update nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.dataset.page === page) {
+                    tab.classList.add('active');
+                }
+            });
+
+            // Hide all pages
+            hideAllPages();
+
+            // Show selected page
+            if (page === 'home') {
+                document.getElementById('home-page').classList.remove('hidden');
+            } else if (page === 'solution-manager') {
+                document.getElementById('solution-manager-page').classList.remove('hidden');
+            }
+        }
+
+        function navigateToSolution(solutionId) {
+            state.currentPage = 'solution';
+            state.currentSolution = solutionId;
+
+            // Update nav tabs (none selected when in solution)
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            hideAllPages();
+            document.getElementById(`page-${solutionId}`).classList.remove('hidden');
+
+            // Initialize progress if needed
+            if (!state.stepProgress[solutionId]) {
+                state.stepProgress[solutionId] = {};
+            }
+
+            // Expand first step
+            if (solutionId !== 'CH') {
+                setTimeout(() => expandStep(solutionId, 0), 100);
+            }
+        }
+
+        function hideAllPages() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('solution-manager-page').classList.add('hidden');
+            document.getElementById('page-262').classList.add('hidden');
+            document.getElementById('page-DF').classList.add('hidden');
+            document.getElementById('page-CH').classList.add('hidden');
+        }
+
+        // ============================================
+        // STEP SUMMARY FUNCTIONS
+        // ============================================
+        function toggleSummary(solutionId) {
+            document.getElementById(`summary-${solutionId}`).classList.toggle('collapsed');
+        }
+
+        // ============================================
+        // RENDER SOLUTION
+        // ============================================
+        function renderSolution(solutionId) {
+            const steps = solutions[solutionId];
+            if (!steps) return;
+
+            const indicatorsContainer = document.getElementById(`indicators-${solutionId}`);
+            const stepsContainer = document.getElementById(`steps-${solutionId}`);
+
+            // Initialize progress
+            state.stepProgress[solutionId] = {};
+
+            // Render step indicators
+            steps.forEach((step, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'step-indicator not-started';
+                indicator.id = `indicator-${solutionId}-${index}`;
+                indicator.onclick = () => expandStep(solutionId, index);
+                indicator.innerHTML = `
+                    <div class="step-status-icon" id="status-icon-${solutionId}-${index}"></div>
+                    <span class="step-indicator-label">${index + 1}. ${step.title}</span>
+                `;
+                indicatorsContainer.appendChild(indicator);
+            });
+
+            // Render step details
+            steps.forEach((step, index) => {
+                const detail = document.createElement('div');
+                detail.className = 'step-detail';
+                detail.id = `step-${solutionId}-${index}`;
+
+                const completedCount = Object.values(state.stepProgress[solutionId]).filter(s => s === 'completed').length;
+
+                detail.innerHTML = `
+                    <div class="step-detail-header" onclick="expandStep('${solutionId}', ${index})">
+                        <div class="step-header-left">
+                            <div class="step-number">${index + 1}</div>
+                            <div class="step-header-info">
+                                <div class="step-detail-title">${step.title}</div>
+                                <div class="step-detail-headline">${step.headline || ''}</div>
+                            </div>
+                        </div>
+                        <div class="step-header-right">
+                            <span class="step-progress-count" id="progress-${solutionId}-${index}">${completedCount} of ${steps.length} completed</span>
+                            <span class="step-expand-icon">&#9660;</span>
+                        </div>
+                    </div>
+                    <div class="step-detail-body">
+                        <div class="step-detail-content">
+                            ${renderStepContent(solutionId, step, index)}
+                        </div>
+                        <div class="step-detail-footer">
+                            <div class="footer-links">
+                                <a href="#" class="footer-link" onclick="event.preventDefault();">&#128196; Documentation</a>
+                                <a href="#" class="footer-link" onclick="event.preventDefault();">&#127891; Tutorial</a>
+                            </div>
+                            <button class="btn btn-primary" onclick="completeAndNextStep('${solutionId}', ${index})">
+                                ${index < steps.length - 1 ? 'Next Step' : 'Complete'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                stepsContainer.appendChild(detail);
+            });
+        }
+
+        function renderStepContent(solutionId, step, index) {
+            // For [262] solution - simple description/action format
+            if (solutionId === '262') {
+                let content = `<p class="step-description">${step.description}</p>`;
+                if (step.link) {
+                    content += `<a href="${step.link}" target="_blank" class="step-link">View Documentation &rarr;</a>`;
+                }
+                if (step.action) {
+                    content += `<div class="mt-16"><button class="btn btn-primary" onclick="showNotification('${step.action} initiated...')">${step.action}</button></div>`;
+                }
+                return content;
+            }
+
+            // For [DF] solution - various input types
+            let content = '';
+
+            switch (step.type) {
+                case 'form':
+                    step.fields.forEach(field => {
+                        content += `
+                            <div class="form-group">
+                                <label class="form-label">${field.name}</label>
+                                <input type="${field.type}" class="form-input" placeholder="${field.placeholder}">
+                            </div>
+                        `;
+                    });
+                    content += `<button class="btn btn-primary" onclick="validateConnection(this)">Validate</button>`;
+                    break;
+
+                case 'multiselect':
+                    step.groups.forEach(group => {
+                        content += `
+                            <div class="picker-section">
+                                <div class="picker-title">${group.name}</div>
+                                <div class="checkbox-group">
+                        `;
+                        group.options.forEach((option, idx) => {
+                            const id = `${solutionId}-${index}-${group.name}-${idx}`;
+                            content += `
+                                <div class="checkbox-item" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" id="${id}">
+                                    <label for="${id}">${option}</label>
+                                </div>
+                            `;
+                        });
+                        content += `</div></div>`;
+                    });
+                    break;
+
+                case 'radio':
+                    content += '<div class="radio-group">';
+                    step.options.forEach((option, idx) => {
+                        content += `
+                            <div class="radio-item ${idx === 0 ? 'selected' : ''}" onclick="selectRadio(this, '${solutionId}-${index}')">
+                                <input type="radio" name="radio-${solutionId}-${index}" ${idx === 0 ? 'checked' : ''}>
+                                <div class="radio-content">
+                                    <div class="radio-label">${option.label}</div>
+                                    <div class="radio-description">${option.description}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    content += '</div>';
+                    break;
+
+                case 'table-list':
+                    content += '<div class="table-list">';
+                    step.tables.forEach(table => {
+                        content += `
+                            <div class="table-item">
+                                <span class="table-name">${table}</span>
+                                <button class="btn btn-secondary" onclick="showNotification('Opening mappings for ${table}...')">Review Mappings & Create Fields</button>
+                            </div>
+                        `;
+                    });
+                    content += '</div>';
+                    break;
+
+                case 'preview':
+                    step.items.forEach(item => {
+                        content += `
+                            <div class="mb-16">
+                                <p class="step-description">${item.description}</p>
+                                <button class="btn btn-secondary" onclick="showNotification('Redirecting...')">${item.name} &rarr;</button>
+                            </div>
+                        `;
+                    });
+                    break;
+
+                case 'rules-list':
+                    content += '<div class="substeps-list">';
+                    step.rules.forEach(rule => {
+                        content += `
+                            <div class="substep-item">
+                                <div>
+                                    <div class="substep-title">${rule.name}</div>
+                                    <p style="font-size: 13px; color: #706E6B; margin-top: 4px;">${rule.description}</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="showNotification('Configuring ${rule.name}...')">Configure</button>
+                            </div>
+                        `;
+                    });
+                    content += '</div>';
+                    break;
+
+                case 'toggle':
+                    content += `
+                        <p class="step-description">${step.description}</p>
+                        <div class="toggle-wrapper mt-16">
+                            <div class="toggle-switch" id="sync-toggle-${solutionId}" onclick="toggleSync('${solutionId}')">
+                                <div class="toggle-slider"></div>
+                            </div>
+                            <span class="toggle-label" id="sync-label-${solutionId}">Sync Disabled</span>
+                        </div>
+                        <button class="btn btn-primary mt-24" onclick="showNotification('Opening D360 Setup...')">Configure D360 Setup</button>
+                    `;
+                    break;
+
+                case 'substeps':
+                    content += '<div class="substeps-list">';
+                    step.substeps.forEach(substep => {
+                        content += `
+                            <div class="substep-item">
+                                <div>
+                                    <div class="substep-title">${substep.name}</div>
+                                    <p style="font-size: 13px; color: #706E6B; margin-top: 4px;">${substep.description}</p>
+                                </div>
+                                <a href="${substep.link}" target="_blank" class="substep-link">View Trailhead &rarr;</a>
+                            </div>
+                        `;
+                    });
+                    content += '</div>';
+                    break;
+            }
+
+            return content;
+        }
+
+        // ============================================
+        // STEP INTERACTION FUNCTIONS
+        // ============================================
+        function expandStep(solutionId, stepIndex) {
+            const steps = solutions[solutionId];
+
+            // Collapse all steps
+            steps.forEach((_, index) => {
+                const stepEl = document.getElementById(`step-${solutionId}-${index}`);
+                const indicatorEl = document.getElementById(`indicator-${solutionId}-${index}`);
+                if (stepEl) stepEl.classList.remove('expanded');
+                if (indicatorEl) indicatorEl.classList.remove('active');
+            });
+
+            // Expand selected step
+            const stepEl = document.getElementById(`step-${solutionId}-${stepIndex}`);
+            const indicatorEl = document.getElementById(`indicator-${solutionId}-${stepIndex}`);
+            if (stepEl) stepEl.classList.add('expanded');
+            if (indicatorEl) indicatorEl.classList.add('active');
+
+            // Update status to in-progress if not completed
+            if (state.stepProgress[solutionId][stepIndex] !== 'completed') {
+                state.stepProgress[solutionId][stepIndex] = 'in-progress';
+                updateStepStatus(solutionId, stepIndex, 'in-progress');
+            }
+
+            // Scroll into view
+            setTimeout(() => {
+                if (stepEl) {
+                    stepEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        function completeAndNextStep(solutionId, stepIndex) {
+            const steps = solutions[solutionId];
+
+            // Mark current step as completed
+            state.stepProgress[solutionId][stepIndex] = 'completed';
+            updateStepStatus(solutionId, stepIndex, 'completed');
+
+            // Update all progress counters
+            updateProgressCounters(solutionId);
+
+            // Collapse current step and expand next
+            if (stepIndex < steps.length - 1) {
+                setTimeout(() => {
+                    expandStep(solutionId, stepIndex + 1);
+                }, 300);
+            } else {
+                // All steps complete
+                showNotification('All steps completed!', true);
+            }
+        }
+
+        function updateStepStatus(solutionId, stepIndex, status) {
+            const indicatorEl = document.getElementById(`indicator-${solutionId}-${stepIndex}`);
+            const statusIconEl = document.getElementById(`status-icon-${solutionId}-${stepIndex}`);
+            const stepEl = document.getElementById(`step-${solutionId}-${stepIndex}`);
+
+            if (!indicatorEl) return;
+
+            // Remove all status classes
+            indicatorEl.classList.remove('not-started', 'in-progress', 'completed');
+            if (stepEl) stepEl.classList.remove('completed');
+
+            // Add appropriate class
+            indicatorEl.classList.add(status);
+
+            // Update icon
+            if (statusIconEl) {
+                if (status === 'completed') {
+                    statusIconEl.innerHTML = '&#10003;';
+                    if (stepEl) stepEl.classList.add('completed');
+                } else {
+                    statusIconEl.innerHTML = '';
+                }
+            }
+        }
+
+        function updateProgressCounters(solutionId) {
+            const steps = solutions[solutionId];
+            const completedCount = Object.values(state.stepProgress[solutionId]).filter(s => s === 'completed').length;
+
+            steps.forEach((_, index) => {
+                const progressEl = document.getElementById(`progress-${solutionId}-${index}`);
+                if (progressEl) {
+                    progressEl.textContent = `${completedCount} of ${steps.length} completed`;
+                }
+            });
+        }
+
+        // ============================================
+        // UI INTERACTION FUNCTIONS
+        // ============================================
+        function toggleCheckbox(element) {
+            element.classList.toggle('selected');
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                checkbox.checked = element.classList.contains('selected');
+            }
+        }
+
+        function selectRadio(element, groupName) {
+            // Remove selected from siblings
+            element.parentElement.querySelectorAll('.radio-item').forEach(item => {
+                item.classList.remove('selected');
+                item.querySelector('input[type="radio"]').checked = false;
+            });
+
+            // Select this one
+            element.classList.add('selected');
+            element.querySelector('input[type="radio"]').checked = true;
+        }
+
+        function toggleSync(solutionId) {
+            const toggle = document.getElementById(`sync-toggle-${solutionId}`);
+            const label = document.getElementById(`sync-label-${solutionId}`);
+
+            toggle.classList.toggle('active');
+
+            if (toggle.classList.contains('active')) {
+                label.textContent = 'Sync Enabled';
+                showNotification('Synchronization enabled');
+            } else {
+                label.textContent = 'Sync Disabled';
+            }
+        }
+
+        function validateConnection(button) {
+            button.disabled = true;
+            button.innerHTML = '<span class="spinner"></span> Validating...';
+
+            setTimeout(() => {
+                button.disabled = false;
+                button.innerHTML = 'Validate';
+                showNotification('Connection validated successfully!', true);
+            }, 1000);
+        }
+
+        function showNotification(message, success = false) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            const notificationIcon = notification.querySelector('.notification-icon');
+
+            notificationMessage.textContent = message;
+            notification.classList.remove('success');
+            notificationIcon.innerHTML = success ? '&#10004;' : '&#8505;';
+
+            if (success) {
+                notification.classList.add('success');
+            }
+
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize app on load
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Setup app picker click handlers
+        document.querySelectorAll('.app-picker-dropdown div').forEach(div => {
+            div.addEventListener('click', () => selectApp(div.dataset.app));
+        });
+    </script>
+</body>
+</html>
