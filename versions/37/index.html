@@ -810,6 +810,41 @@
             color: #706E6B;
         }
 
+        /* System Badges - D360 and Informatica */
+        .system-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 12px;
+        }
+
+        .system-badge.d360 {
+            background-color: #E8F4FD;
+            color: #0070D2;
+            border: 1px solid #B9D6F3;
+        }
+
+        .system-badge.d360::before {
+            content: "☁";
+            margin-right: 4px;
+        }
+
+        .system-badge.informatica {
+            background-color: #FFF3E8;
+            color: #D95800;
+            border: 1px solid #FCCFA8;
+        }
+
+        .system-badge.informatica::before {
+            content: "⚙";
+            margin-right: 4px;
+        }
+
         .step-header-right {
             display: flex;
             align-items: center;
@@ -1634,6 +1669,7 @@
                     title: 'Create Ingestion End-Point',
                     headline: 'API Configuration',
                     type: 'action',
+                    system: 'D360',
                     description: 'Setup Ingestion-API end-point via D360-Setup.',
                     action: 'Configure End-Point'
                 },
@@ -1641,6 +1677,7 @@
                     title: 'Create Schema',
                     headline: 'Schema Registration',
                     type: 'action',
+                    system: 'D360',
                     description: 'Register business entities with predefined schema.',
                     action: 'Define Schema'
                 },
@@ -1648,6 +1685,7 @@
                     title: 'Business Entity to Lake',
                     headline: 'Extensibility Packages',
                     type: 'action',
+                    system: 'Informatica',
                     description: 'Install Informatica Extensibility Packages.',
                     action: 'Install Packages'
                 },
@@ -1655,6 +1693,7 @@
                     title: 'Publish Data: Day 0 & 1',
                     headline: 'Initial Load & Change Data Capture',
                     type: 'action',
+                    system: 'Informatica',
                     description: 'Day 0: Initial data load from Informatica to D360. Day 1: Enable CDC (Change Data Capture) feed for ongoing synchronization.',
                     action: 'Configure Data Publishing'
                 },
@@ -1662,6 +1701,7 @@
                     title: 'BYO MDM',
                     headline: 'External MDM Integration',
                     type: 'action',
+                    system: 'Informatica',
                     description: 'Populate data mastered in external MDM.',
                     action: 'Configure MDM'
                 }
@@ -1989,12 +2029,17 @@
 
                 const completedCount = Object.values(state.stepProgress[solutionId]).filter(s => s === 'completed').length;
 
+                // System badge HTML (only for steps with system property)
+                const systemBadge = step.system
+                    ? `<span class="system-badge ${step.system.toLowerCase()}">${step.system}</span>`
+                    : '';
+
                 detail.innerHTML = `
                     <div class="step-detail-header" onclick="expandStep('${solutionId}', ${index})">
                         <div class="step-header-left">
                             <div class="step-number">${index + 1}</div>
                             <div class="step-header-info">
-                                <div class="step-detail-title">${step.title}</div>
+                                <div class="step-detail-title">${step.title}${systemBadge}</div>
                                 <div class="step-detail-headline">${step.headline || ''}</div>
                             </div>
                         </div>
