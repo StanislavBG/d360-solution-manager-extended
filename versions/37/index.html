@@ -1631,44 +1631,37 @@
         const solutions = {
             '262': [
                 {
-                    title: 'Solution Guide',
-                    headline: 'Overview and documentation',
-                    description: 'View required steps and documentation for integrating business entities.',
-                    link: 'https://help.salesforce.com/data360'
-                },
-                {
                     title: 'Create Ingestion End-Point',
                     headline: 'API Configuration',
+                    type: 'action',
                     description: 'Setup Ingestion-API end-point via D360-Setup.',
                     action: 'Configure End-Point'
                 },
                 {
                     title: 'Create Schema',
                     headline: 'Schema Registration',
+                    type: 'action',
                     description: 'Register business entities with predefined schema.',
                     action: 'Define Schema'
                 },
                 {
                     title: 'Business Entity to Lake',
                     headline: 'Extensibility Packages',
+                    type: 'action',
                     description: 'Install Informatica Extensibility Packages.',
                     action: 'Install Packages'
                 },
                 {
-                    title: 'Publish Day 0',
-                    headline: 'Initial Data Load',
-                    description: 'Initial data load from Informatica to D360.',
-                    action: 'Start Initial Load'
-                },
-                {
-                    title: 'Publish Day 1',
-                    headline: 'Change Data Capture',
-                    description: 'CDC (Change Data Capture) feed enabled.',
-                    action: 'Enable CDC'
+                    title: 'Publish Data: Day 0 & 1',
+                    headline: 'Initial Load & Change Data Capture',
+                    type: 'action',
+                    description: 'Day 0: Initial data load from Informatica to D360. Day 1: Enable CDC (Change Data Capture) feed for ongoing synchronization.',
+                    action: 'Configure Data Publishing'
                 },
                 {
                     title: 'BYO MDM',
                     headline: 'External MDM Integration',
+                    type: 'action',
                     description: 'Populate data mastered in external MDM.',
                     action: 'Configure MDM'
                 }
@@ -2034,22 +2027,21 @@
         }
 
         function renderStepContent(solutionId, step, index) {
-            // For [262] solution - simple description/action format
-            if (solutionId === '262') {
-                let content = `<p class="step-description">${step.description}</p>`;
-                if (step.link) {
-                    content += `<a href="${step.link}" target="_blank" class="step-link">View Documentation &rarr;</a>`;
-                }
-                if (step.action) {
-                    content += `<div class="mt-16"><button class="btn btn-primary" onclick="showNotification('${step.action} initiated...')">${step.action}</button></div>`;
-                }
-                return content;
-            }
-
-            // For [DF] solution - various input types
+            // Unified template - all steps use type-based rendering
             let content = '';
 
             switch (step.type) {
+                case 'action':
+                    // Simple description + action button (used by 262 and can be used by DF)
+                    content = `<p class="step-description">${step.description}</p>`;
+                    if (step.link) {
+                        content += `<a href="${step.link}" target="_blank" class="step-link">View Documentation &rarr;</a>`;
+                    }
+                    if (step.action) {
+                        content += `<div class="mt-16"><button class="btn btn-primary" onclick="showNotification('${step.action} initiated...')">${step.action}</button></div>`;
+                    }
+                    break;
+
                 case 'form':
                     step.fields.forEach((field, fieldIdx) => {
                         const fieldId = `field-${solutionId}-${index}-${fieldIdx}`;
@@ -2181,6 +2173,13 @@
                     });
                     content += '</div>';
                     break;
+
+                default:
+                    // Fallback for steps without a type - render description if available
+                    if (step.description) {
+                        content = `<p class="step-description">${step.description}</p>`;
+                    }
+                    break;
             }
 
             return content;
@@ -2191,18 +2190,26 @@
         // ============================================
         function expandStep(solutionId, stepIndex) {
             const steps = solutions[solutionId];
+            const stepEl = document.getElementById(`step-${solutionId}-${stepIndex}`);
+            const indicatorEl = document.getElementById(`indicator-${solutionId}-${stepIndex}`);
+
+            // Check if this step is already expanded (toggle behavior)
+            const isCurrentlyExpanded = stepEl && stepEl.classList.contains('expanded');
 
             // Collapse all steps
             steps.forEach((_, index) => {
-                const stepEl = document.getElementById(`step-${solutionId}-${index}`);
-                const indicatorEl = document.getElementById(`indicator-${solutionId}-${index}`);
-                if (stepEl) stepEl.classList.remove('expanded');
-                if (indicatorEl) indicatorEl.classList.remove('active');
+                const el = document.getElementById(`step-${solutionId}-${index}`);
+                const indEl = document.getElementById(`indicator-${solutionId}-${index}`);
+                if (el) el.classList.remove('expanded');
+                if (indEl) indEl.classList.remove('active');
             });
 
+            // If it was already expanded, leave it collapsed (toggle off)
+            if (isCurrentlyExpanded) {
+                return;
+            }
+
             // Expand selected step
-            const stepEl = document.getElementById(`step-${solutionId}-${stepIndex}`);
-            const indicatorEl = document.getElementById(`indicator-${solutionId}-${stepIndex}`);
             if (stepEl) stepEl.classList.add('expanded');
             if (indicatorEl) indicatorEl.classList.add('active');
 
