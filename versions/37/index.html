@@ -459,6 +459,83 @@
             min-height: 100%;
         }
 
+        /* ============================================
+           BREADCRUMB NAVIGATION (NEW)
+           ============================================ */
+        .breadcrumb {
+            background-color: white;
+            padding: 12px 30px;
+            border-bottom: 1px solid #DDDBDA;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .breadcrumb-item {
+            color: #0070D2;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-item:hover {
+            color: #005FB2;
+            text-decoration: underline;
+        }
+
+        .breadcrumb-separator {
+            color: #706E6B;
+        }
+
+        .breadcrumb-current {
+            color: #181818;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           OVERALL PROGRESS BAR (NEW)
+           ============================================ */
+        .progress-bar-container {
+            background-color: white;
+            padding: 16px 30px;
+            border-bottom: 1px solid #DDDBDA;
+        }
+
+        .progress-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #181818;
+        }
+
+        .progress-bar-percentage {
+            font-size: 14px;
+            color: #0070D2;
+            font-weight: 600;
+        }
+
+        .progress-bar-track {
+            height: 8px;
+            background-color: #DDDBDA;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0070D2, #00A1E0);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
         /* $Header-Instructions */
         .template-header {
             background-color: white;
@@ -481,25 +558,31 @@
 
         .template-content {
             display: flex;
-            flex-direction: column;
             padding: 24px 30px;
-            gap: 20px;
+            gap: 30px;
         }
 
         /* ============================================
-           $STEP-SUMMARY - Horizontal layout on top
+           $STEP-SUMMARY (ENHANCED - STICKY)
            ============================================ */
         .step-summary {
-            width: 100%;
+            width: 320px;
+            flex-shrink: 0;
             background-color: white;
             border: 1px solid #DDDBDA;
             border-radius: 4px;
             overflow: hidden;
             transition: all 0.3s ease;
+            position: sticky;
+            top: 24px;
+            align-self: flex-start;
+            max-height: calc(85vh - 200px);
+            display: flex;
+            flex-direction: column;
         }
 
         .step-summary.collapsed {
-            max-height: 56px;
+            max-height: calc(15vh * 0.4);
         }
 
         .summary-header {
@@ -510,6 +593,7 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .summary-header:hover {
@@ -535,46 +619,35 @@
         }
 
         .summary-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 24px;
-            padding: 16px 20px;
-            transition: all 0.3s ease;
+            flex: 1;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
         }
 
         .step-summary.collapsed .summary-content {
             max-height: 0;
-            padding: 0 20px;
             overflow: hidden;
         }
 
         .step-indicators {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            flex: 1;
+            padding: 12px 0;
         }
 
         .step-indicator {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
+            gap: 12px;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: all 0.2s;
-            background-color: #FAFAF9;
-            border: 1px solid #DDDBDA;
-            border-radius: 20px;
+            transition: background-color 0.2s;
         }
 
         .step-indicator:hover {
             background-color: #F3F3F3;
-            border-color: #0070D2;
         }
 
         .step-indicator.active {
             background-color: #E8F4FF;
-            border-color: #0070D2;
         }
 
         /* Step Status Icons */
@@ -626,33 +699,27 @@
 
         /* Video Placeholder */
         .video-placeholder {
-            flex-shrink: 0;
-            width: 200px;
-            height: 80px;
+            margin: 20px;
             background-color: #F3F3F3;
             border: 2px dashed #DDDBDA;
             border-radius: 8px;
+            height: 180px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
             color: #706E6B;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .video-placeholder:hover {
-            border-color: #0070D2;
-            color: #0070D2;
+            flex-shrink: 0;
         }
 
         .video-placeholder-icon {
-            font-size: 24px;
-            opacity: 0.7;
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
         }
 
         .video-placeholder-text {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
         }
 
@@ -660,7 +727,7 @@
            $STEP-DETAILS-CONTAINER
            ============================================ */
         .step-details-container {
-            width: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -782,7 +849,7 @@
             padding: 24px;
         }
 
-        /* $Step-Detail-Footer */
+        /* $Step-Detail-Footer (ENHANCED - Previous Button) */
         .step-detail-footer {
             padding: 16px 24px;
             background-color: #FAFAF9;
@@ -808,6 +875,11 @@
 
         .footer-link:hover {
             text-decoration: underline;
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: 12px;
         }
 
         /* ============================================
@@ -846,13 +918,25 @@
             border-color: #0070D2;
         }
 
+        .btn-outline {
+            background-color: transparent;
+            color: #706E6B;
+            border: 1px solid #DDDBDA;
+        }
+
+        .btn-outline:hover {
+            background-color: #F3F3F3;
+            color: #181818;
+            border-color: #706E6B;
+        }
+
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
         /* ============================================
-           FORM ELEMENTS
+           FORM ELEMENTS (ENHANCED - Validation)
            ============================================ */
         .form-group {
             margin-bottom: 20px;
@@ -864,6 +948,11 @@
             font-weight: 600;
             color: #181818;
             margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: #C23934;
+            margin-left: 4px;
         }
 
         .form-input {
@@ -879,6 +968,50 @@
             outline: none;
             border-color: #0070D2;
             box-shadow: 0 0 0 3px rgba(0, 112, 210, 0.15);
+        }
+
+        .form-input.error {
+            border-color: #C23934;
+        }
+
+        .form-input.error:focus {
+            box-shadow: 0 0 0 3px rgba(194, 57, 52, 0.15);
+        }
+
+        .form-input.success {
+            border-color: #2E844A;
+        }
+
+        .form-error {
+            color: #C23934;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #706E6B;
+            font-size: 14px;
+            padding: 4px;
+        }
+
+        .password-toggle:hover {
+            color: #0070D2;
         }
 
         /* Multi-select Picker */
@@ -1168,6 +1301,10 @@
             border-left-color: #2E844A;
         }
 
+        .notification.error {
+            border-left-color: #C23934;
+        }
+
         .notification-icon {
             font-size: 20px;
         }
@@ -1360,6 +1497,22 @@
 
                 <!-- $[262]-Page -->
                 <div id="page-262" class="solution-template-page hidden">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb" id="breadcrumb-262">
+                        <span class="breadcrumb-item" onclick="navigateToPage('solution-manager')">Solution Manager</span>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Integrate Business Entities [262]</span>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-header">
+                            <span class="progress-bar-label">Overall Progress</span>
+                            <span class="progress-bar-percentage" id="progress-percent-262">0%</span>
+                        </div>
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill" id="progress-fill-262"></div>
+                        </div>
+                    </div>
                     <div class="template-header">
                         <div class="template-title">Integrate Business Entities from Informatica</div>
                         <div class="template-headline">Follow the steps below to configure your Informatica integration with Data 360</div>
@@ -1384,6 +1537,22 @@
 
                 <!-- $[DF]-Page -->
                 <div id="page-DF" class="solution-template-page hidden">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb" id="breadcrumb-DF">
+                        <span class="breadcrumb-item" onclick="navigateToPage('solution-manager')">Solution Manager</span>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Integrate Business Entities [DF]</span>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-header">
+                            <span class="progress-bar-label">Overall Progress</span>
+                            <span class="progress-bar-percentage" id="progress-percent-DF">0%</span>
+                        </div>
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill" id="progress-fill-DF"></div>
+                        </div>
+                    </div>
                     <div class="template-header">
                         <div class="template-title">Integrate Business Entities from Informatica</div>
                         <div class="template-headline">Configure your Informatica connection and data integration settings</div>
@@ -1408,6 +1577,12 @@
 
                 <!-- $Customer-Households-Page (WIP) -->
                 <div id="page-CH" class="solution-template-page hidden">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item" onclick="navigateToPage('solution-manager')">Solution Manager</span>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Customer Households [CH]</span>
+                    </div>
                     <div class="wip-container">
                         <div class="wip-icon">&#128679;</div>
                         <div class="wip-title">WORK IN PROGRESS</div>
@@ -1435,41 +1610,58 @@
             stepProgress: {
                 '262': {},
                 'DF': {}
-            }
+            },
+            hasUnsavedProgress: false
         };
+
+        // ============================================
+        // LOCAL STORAGE KEYS
+        // ============================================
+        const STORAGE_KEY = 'd360-solution-manager-progress';
 
         // ============================================
         // SOLUTION DEFINITIONS
         // ============================================
+        const solutionTitles = {
+            '262': 'Integrate Business Entities [262]',
+            'DF': 'Integrate Business Entities [DF]',
+            'CH': 'Customer Households [CH]'
+        };
+
         const solutions = {
             '262': [
                 {
                     title: 'Create Ingestion End-Point',
                     headline: 'API Configuration',
+                    type: 'action',
                     description: 'Setup Ingestion-API end-point via D360-Setup.',
                     action: 'Configure End-Point'
                 },
                 {
                     title: 'Create Schema',
                     headline: 'Schema Registration',
+                    type: 'action',
                     description: 'Register business entities with predefined schema.',
                     action: 'Define Schema'
                 },
                 {
                     title: 'Business Entity to Lake',
                     headline: 'Extensibility Packages',
+                    type: 'action',
                     description: 'Install Informatica Extensibility Packages.',
                     action: 'Install Packages'
                 },
                 {
                     title: 'Publish Data: Day 0 & 1',
                     headline: 'Initial Load & Change Data Capture',
+                    type: 'action',
                     description: 'Day 0: Initial data load from Informatica to D360. Day 1: Enable CDC (Change Data Capture) feed for ongoing synchronization.',
                     action: 'Configure Data Publishing'
                 },
                 {
                     title: 'BYO MDM',
                     headline: 'External MDM Integration',
+                    type: 'action',
                     description: 'Populate data mastered in external MDM.',
                     action: 'Configure MDM'
                 }
@@ -1480,10 +1672,10 @@
                     headline: 'Establish connection with credentials',
                     type: 'form',
                     fields: [
-                        { name: 'Connection Name', type: 'text', placeholder: 'Enter connection name' },
-                        { name: 'Tenant URL', type: 'text', placeholder: 'https://your-tenant.informatica.com' },
-                        { name: 'Username', type: 'text', placeholder: 'Enter username' },
-                        { name: 'Password', type: 'password', placeholder: 'Enter password' }
+                        { name: 'Connection Name', type: 'text', placeholder: 'Enter connection name', required: true },
+                        { name: 'Tenant URL', type: 'text', placeholder: 'https://your-tenant.informatica.com', required: true },
+                        { name: 'Username', type: 'text', placeholder: 'Enter username', required: true },
+                        { name: 'Password', type: 'password', placeholder: 'Enter password', required: true }
                     ]
                 },
                 {
@@ -1551,11 +1743,63 @@
         };
 
         // ============================================
+        // LOCAL STORAGE FUNCTIONS
+        // ============================================
+        function saveProgress() {
+            try {
+                const data = {
+                    stepProgress: state.stepProgress,
+                    lastUpdated: new Date().toISOString()
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                state.hasUnsavedProgress = false;
+            } catch (e) {
+                console.warn('Could not save progress to localStorage:', e);
+            }
+        }
+
+        function loadProgress() {
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                if (data) {
+                    const parsed = JSON.parse(data);
+                    if (parsed.stepProgress) {
+                        state.stepProgress = parsed.stepProgress;
+                        return true;
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not load progress from localStorage:', e);
+            }
+            return false;
+        }
+
+        function clearProgress() {
+            try {
+                localStorage.removeItem(STORAGE_KEY);
+                state.stepProgress = { '262': {}, 'DF': {} };
+                state.hasUnsavedProgress = false;
+            } catch (e) {
+                console.warn('Could not clear progress from localStorage:', e);
+            }
+        }
+
+        // ============================================
         // INITIALIZATION
         // ============================================
         function init() {
+            // Load saved progress
+            const hasProgress = loadProgress();
+
             renderSolution('262');
             renderSolution('DF');
+
+            // Restore progress indicators if loaded
+            if (hasProgress) {
+                restoreProgressIndicators('262');
+                restoreProgressIndicators('DF');
+                showNotification('Progress restored from previous session', true);
+            }
 
             // Close dropdowns when clicking outside
             document.addEventListener('click', (e) => {
@@ -1564,6 +1808,28 @@
                     document.getElementById('app-picker-dropdown').classList.remove('show');
                 }
             });
+
+            // Warn before leaving with unsaved progress
+            window.addEventListener('beforeunload', (e) => {
+                if (state.hasUnsavedProgress) {
+                    e.preventDefault();
+                    e.returnValue = 'You have unsaved progress. Are you sure you want to leave?';
+                    return e.returnValue;
+                }
+            });
+        }
+
+        function restoreProgressIndicators(solutionId) {
+            const progress = state.stepProgress[solutionId];
+            if (!progress) return;
+
+            Object.keys(progress).forEach(stepIndex => {
+                const status = progress[stepIndex];
+                updateStepStatus(solutionId, parseInt(stepIndex), status);
+            });
+
+            updateProgressBar(solutionId);
+            updateProgressCounters(solutionId);
         }
 
         // ============================================
@@ -1632,10 +1898,26 @@
                 state.stepProgress[solutionId] = {};
             }
 
-            // Expand first step
+            // Update progress bar
+            updateProgressBar(solutionId);
+
+            // Expand first incomplete step or first step
             if (solutionId !== 'CH') {
-                setTimeout(() => expandStep(solutionId, 0), 100);
+                const firstIncomplete = findFirstIncompleteStep(solutionId);
+                setTimeout(() => expandStep(solutionId, firstIncomplete), 100);
             }
+        }
+
+        function findFirstIncompleteStep(solutionId) {
+            const steps = solutions[solutionId];
+            const progress = state.stepProgress[solutionId] || {};
+
+            for (let i = 0; i < steps.length; i++) {
+                if (progress[i] !== 'completed') {
+                    return i;
+                }
+            }
+            return 0;
         }
 
         function hideAllPages() {
@@ -1644,6 +1926,24 @@
             document.getElementById('page-262').classList.add('hidden');
             document.getElementById('page-DF').classList.add('hidden');
             document.getElementById('page-CH').classList.add('hidden');
+        }
+
+        // ============================================
+        // PROGRESS BAR FUNCTIONS
+        // ============================================
+        function updateProgressBar(solutionId) {
+            const steps = solutions[solutionId];
+            if (!steps) return;
+
+            const progress = state.stepProgress[solutionId] || {};
+            const completedCount = Object.values(progress).filter(s => s === 'completed').length;
+            const percentage = Math.round((completedCount / steps.length) * 100);
+
+            const percentEl = document.getElementById(`progress-percent-${solutionId}`);
+            const fillEl = document.getElementById(`progress-fill-${solutionId}`);
+
+            if (percentEl) percentEl.textContent = `${percentage}%`;
+            if (fillEl) fillEl.style.width = `${percentage}%`;
         }
 
         // ============================================
@@ -1663,8 +1963,10 @@
             const indicatorsContainer = document.getElementById(`indicators-${solutionId}`);
             const stepsContainer = document.getElementById(`steps-${solutionId}`);
 
-            // Initialize progress
-            state.stepProgress[solutionId] = {};
+            // Initialize progress if not exists
+            if (!state.stepProgress[solutionId]) {
+                state.stepProgress[solutionId] = {};
+            }
 
             // Render step indicators
             steps.forEach((step, index) => {
@@ -1710,9 +2012,12 @@
                                 <a href="#" class="footer-link" onclick="event.preventDefault();">&#128196; Documentation</a>
                                 <a href="#" class="footer-link" onclick="event.preventDefault();">&#127891; Tutorial</a>
                             </div>
-                            <button class="btn btn-primary" onclick="completeAndNextStep('${solutionId}', ${index})">
-                                ${index < steps.length - 1 ? 'Next Step' : 'Complete'}
-                            </button>
+                            <div class="footer-buttons">
+                                ${index > 0 ? `<button class="btn btn-outline" onclick="goToPreviousStep('${solutionId}', ${index})">&#8592; Previous</button>` : ''}
+                                <button class="btn btn-primary" onclick="completeAndNextStep('${solutionId}', ${index})">
+                                    ${index < steps.length - 1 ? 'Next Step &#8594;' : 'Complete &#10003;'}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1722,32 +2027,46 @@
         }
 
         function renderStepContent(solutionId, step, index) {
-            // For [262] solution - simple description/action format
-            if (solutionId === '262') {
-                let content = `<p class="step-description">${step.description}</p>`;
-                if (step.link) {
-                    content += `<a href="${step.link}" target="_blank" class="step-link">View Documentation &rarr;</a>`;
-                }
-                if (step.action) {
-                    content += `<div class="mt-16"><button class="btn btn-primary" onclick="showNotification('${step.action} initiated...')">${step.action}</button></div>`;
-                }
-                return content;
-            }
-
-            // For [DF] solution - various input types
+            // Unified template - all steps use type-based rendering
             let content = '';
 
             switch (step.type) {
+                case 'action':
+                    // Simple description + action button (used by 262 and can be used by DF)
+                    content = `<p class="step-description">${step.description}</p>`;
+                    if (step.link) {
+                        content += `<a href="${step.link}" target="_blank" class="step-link">View Documentation &rarr;</a>`;
+                    }
+                    if (step.action) {
+                        content += `<div class="mt-16"><button class="btn btn-primary" onclick="showNotification('${step.action} initiated...')">${step.action}</button></div>`;
+                    }
+                    break;
+
                 case 'form':
-                    step.fields.forEach(field => {
+                    step.fields.forEach((field, fieldIdx) => {
+                        const fieldId = `field-${solutionId}-${index}-${fieldIdx}`;
+                        const isPassword = field.type === 'password';
                         content += `
                             <div class="form-group">
-                                <label class="form-label">${field.name}</label>
-                                <input type="${field.type}" class="form-input" placeholder="${field.placeholder}">
+                                <label class="form-label" for="${fieldId}">
+                                    ${field.name}
+                                    ${field.required ? '<span class="required">*</span>' : ''}
+                                </label>
+                                ${isPassword ? '<div class="password-wrapper">' : ''}
+                                <input
+                                    type="${field.type}"
+                                    id="${fieldId}"
+                                    class="form-input"
+                                    placeholder="${field.placeholder}"
+                                    ${field.required ? 'required' : ''}
+                                    onchange="markUnsavedProgress()"
+                                >
+                                ${isPassword ? `<button type="button" class="password-toggle" onclick="togglePasswordVisibility('${fieldId}')">Show</button></div>` : ''}
+                                <div class="form-error" id="error-${fieldId}">This field is required</div>
                             </div>
                         `;
                     });
-                    content += `<button class="btn btn-primary" onclick="validateConnection(this)">Validate</button>`;
+                    content += `<button class="btn btn-primary" onclick="validateConnection(this, '${solutionId}', ${index})">Validate Connection</button>`;
                     break;
 
                 case 'multiselect':
@@ -1854,6 +2173,13 @@
                     });
                     content += '</div>';
                     break;
+
+                default:
+                    // Fallback for steps without a type - render description if available
+                    if (step.description) {
+                        content = `<p class="step-description">${step.description}</p>`;
+                    }
+                    break;
             }
 
             return content;
@@ -1901,15 +2227,35 @@
             }, 100);
         }
 
+        function goToPreviousStep(solutionId, currentIndex) {
+            if (currentIndex > 0) {
+                expandStep(solutionId, currentIndex - 1);
+            }
+        }
+
         function completeAndNextStep(solutionId, stepIndex) {
             const steps = solutions[solutionId];
+
+            // Validate form if it's a form step
+            if (solutionId === 'DF' && steps[stepIndex].type === 'form') {
+                if (!validateFormFields(solutionId, stepIndex)) {
+                    showNotification('Please fill in all required fields', false, true);
+                    return;
+                }
+            }
 
             // Mark current step as completed
             state.stepProgress[solutionId][stepIndex] = 'completed';
             updateStepStatus(solutionId, stepIndex, 'completed');
 
+            // Update progress bar
+            updateProgressBar(solutionId);
+
             // Update all progress counters
             updateProgressCounters(solutionId);
+
+            // Save progress
+            saveProgress();
 
             // Collapse current step and expand next
             if (stepIndex < steps.length - 1) {
@@ -1918,7 +2264,7 @@
                 }, 300);
             } else {
                 // All steps complete
-                showNotification('All steps completed!', true);
+                showNotification('All steps completed! Your configuration is ready.', true);
             }
         }
 
@@ -1960,6 +2306,41 @@
         }
 
         // ============================================
+        // FORM VALIDATION FUNCTIONS
+        // ============================================
+        function validateFormFields(solutionId, stepIndex) {
+            const step = solutions[solutionId][stepIndex];
+            if (!step.fields) return true;
+
+            let isValid = true;
+
+            step.fields.forEach((field, fieldIdx) => {
+                if (field.required) {
+                    const fieldId = `field-${solutionId}-${stepIndex}-${fieldIdx}`;
+                    const input = document.getElementById(fieldId);
+                    const errorEl = document.getElementById(`error-${fieldId}`);
+
+                    if (!input.value.trim()) {
+                        input.classList.add('error');
+                        input.classList.remove('success');
+                        if (errorEl) errorEl.classList.add('show');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('error');
+                        input.classList.add('success');
+                        if (errorEl) errorEl.classList.remove('show');
+                    }
+                }
+            });
+
+            return isValid;
+        }
+
+        function markUnsavedProgress() {
+            state.hasUnsavedProgress = true;
+        }
+
+        // ============================================
         // UI INTERACTION FUNCTIONS
         // ============================================
         function toggleCheckbox(element) {
@@ -1968,6 +2349,7 @@
             if (checkbox) {
                 checkbox.checked = element.classList.contains('selected');
             }
+            markUnsavedProgress();
         }
 
         function selectRadio(element, groupName) {
@@ -1980,6 +2362,7 @@
             // Select this one
             element.classList.add('selected');
             element.querySelector('input[type="radio"]').checked = true;
+            markUnsavedProgress();
         }
 
         function toggleSync(solutionId) {
@@ -1990,34 +2373,71 @@
 
             if (toggle.classList.contains('active')) {
                 label.textContent = 'Sync Enabled';
-                showNotification('Synchronization enabled');
+                showNotification('Synchronization enabled', true);
             } else {
                 label.textContent = 'Sync Disabled';
             }
+            markUnsavedProgress();
         }
 
-        function validateConnection(button) {
+        function togglePasswordVisibility(fieldId) {
+            const input = document.getElementById(fieldId);
+            const button = input.nextElementSibling;
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = 'Hide';
+            } else {
+                input.type = 'password';
+                button.textContent = 'Show';
+            }
+        }
+
+        function validateConnection(button, solutionId, stepIndex) {
+            // First validate fields
+            if (!validateFormFields(solutionId, stepIndex)) {
+                showNotification('Please fill in all required fields', false, true);
+                return;
+            }
+
             button.disabled = true;
             button.innerHTML = '<span class="spinner"></span> Validating...';
 
             setTimeout(() => {
                 button.disabled = false;
-                button.innerHTML = 'Validate';
+                button.innerHTML = 'Validate Connection';
+
+                // Mark all fields as success
+                const step = solutions[solutionId][stepIndex];
+                step.fields.forEach((field, fieldIdx) => {
+                    const fieldId = `field-${solutionId}-${stepIndex}-${fieldIdx}`;
+                    const input = document.getElementById(fieldId);
+                    if (input) {
+                        input.classList.remove('error');
+                        input.classList.add('success');
+                    }
+                });
+
                 showNotification('Connection validated successfully!', true);
-            }, 1000);
+            }, 1500);
         }
 
-        function showNotification(message, success = false) {
+        function showNotification(message, success = false, error = false) {
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notification-message');
             const notificationIcon = notification.querySelector('.notification-icon');
 
             notificationMessage.textContent = message;
-            notification.classList.remove('success');
-            notificationIcon.innerHTML = success ? '&#10004;' : '&#8505;';
+            notification.classList.remove('success', 'error');
 
             if (success) {
+                notificationIcon.innerHTML = '&#10004;';
                 notification.classList.add('success');
+            } else if (error) {
+                notificationIcon.innerHTML = '&#10006;';
+                notification.classList.add('error');
+            } else {
+                notificationIcon.innerHTML = '&#8505;';
             }
 
             notification.classList.add('show');
