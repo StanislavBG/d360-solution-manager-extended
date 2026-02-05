@@ -1698,20 +1698,20 @@
                     action: 'Configure Data Publishing'
                 },
                 {
-                    title: 'Business Entity Mappings',
-                    headline: 'Create Business Entity to Unified DMO Mappings from DataKit',
-                    type: 'action',
-                    system: 'D360',
-                    description: 'Configure mappings between business entities and unified DMO using DataKit.',
-                    action: 'Configure Mappings'
-                },
-                {
                     title: 'BYO-MDM Definition',
                     headline: 'Create BYO-MDM Ruleset from MDM-DataKit',
                     type: 'action',
                     system: 'D360',
                     description: 'Define BYO-MDM ruleset configuration using MDM-DataKit.',
                     action: 'Configure Ruleset'
+                },
+                {
+                    title: 'Business Entity Mappings',
+                    headline: 'Create Business Entity to Unified DMO Mappings from DataKit',
+                    type: 'action',
+                    system: 'D360',
+                    description: 'Configure mappings between business entities and unified DMO using DataKit.',
+                    action: 'Configure Mappings'
                 }
             ],
             'DF': [
@@ -1865,6 +1865,19 @@
                     return e.returnValue;
                 }
             });
+
+            // Handle URL hash for direct linking to solutions
+            handleUrlHash();
+            window.addEventListener('hashchange', handleUrlHash);
+        }
+
+        function handleUrlHash() {
+            const hash = window.location.hash.slice(1); // Remove the #
+            if (hash && solutions[hash]) {
+                navigateToSolution(hash);
+            } else if (hash === 'solution-manager') {
+                navigateToPage('solution-manager');
+            }
         }
 
         function restoreProgressIndicators(solutionId) {
@@ -1910,6 +1923,13 @@
             state.currentPage = page;
             state.currentSolution = null;
 
+            // Update URL hash (clear for home, set for solution-manager)
+            if (page === 'home') {
+                history.pushState(null, '', window.location.pathname);
+            } else if (page === 'solution-manager') {
+                window.location.hash = 'solution-manager';
+            }
+
             // Update nav tabs
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -1932,6 +1952,9 @@
         function navigateToSolution(solutionId) {
             state.currentPage = 'solution';
             state.currentSolution = solutionId;
+
+            // Update URL hash for direct linking
+            window.location.hash = solutionId;
 
             // Update nav tabs (none selected when in solution)
             document.querySelectorAll('.nav-tab').forEach(tab => {
