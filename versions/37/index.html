@@ -1267,6 +1267,34 @@
             text-decoration: underline;
         }
 
+        /* Text + Links variant (Phase-2-B) */
+        .text-links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .text-link-item {
+            display: inline-flex;
+            align-items: center;
+            color: #0070D2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border: 1px solid #DDDBDA;
+            border-radius: 6px;
+            background: #FAFAF9;
+            transition: all 0.2s;
+        }
+
+        .text-link-item:hover {
+            background: #F0F7FF;
+            border-color: #0070D2;
+            text-decoration: none;
+        }
+
         /* Steps for 262 version */
         .step-description {
             font-size: 14px;
@@ -1515,11 +1543,17 @@
                             <div class="tile-title">Integrate Business Entities from Informatica</div>
                             <div class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work through the steps required to operationalize business entities created in Informatica in D360.</div>
                         </div>
-                        <!-- [Phase-2] Tile -->
-                        <div class="solution-tile" onclick="navigateToSolution('Phase-2')">
-                            <div class="tile-badge">[Phase-2]</div>
+                        <!-- [Phase-2-A] Tile -->
+                        <div class="solution-tile" onclick="navigateToSolution('Phase-2-A')">
+                            <div class="tile-badge">[Phase-2-A]</div>
                             <div class="tile-title">Integrate Business Entities from Informatica</div>
                             <div class="tile-description">Realize the full potential of the curated and enriched business entities from Informatica directly in D360. In this step by step guide, we will work through the steps required to operationalize business entities created in Informatica in D360.</div>
+                        </div>
+                        <!-- [Phase-2-B] Tile -->
+                        <div class="solution-tile" onclick="navigateToSolution('Phase-2-B')">
+                            <div class="tile-badge">[Phase-2-B]</div>
+                            <div class="tile-title">Integrate Business Entities from Informatica</div>
+                            <div class="tile-description">Text-only guide for integrating curated and enriched business entities from Informatica in D360. Step-by-step instructions with links to documentation and resources.</div>
                         </div>
                         <!-- [CH] Tile -->
                         <div class="solution-tile" onclick="navigateToSolution('CH')">
@@ -1570,22 +1604,22 @@
                     </div>
                 </div>
 
-                <!-- $[Phase-2]-Page -->
-                <div id="page-Phase-2" class="solution-template-page hidden">
+                <!-- $[Phase-2-A]-Page -->
+                <div id="page-Phase-2-A" class="solution-template-page hidden">
                     <!-- Breadcrumb -->
-                    <div class="breadcrumb" id="breadcrumb-Phase-2">
+                    <div class="breadcrumb" id="breadcrumb-Phase-2-A">
                         <span class="breadcrumb-item" onclick="navigateToPage('solution-manager')">Solution Manager</span>
                         <span class="breadcrumb-separator">›</span>
-                        <span class="breadcrumb-current">Integrate Business Entities [Phase-2]</span>
+                        <span class="breadcrumb-current">Integrate Business Entities [Phase-2-A]</span>
                     </div>
                     <!-- Progress Bar -->
                     <div class="progress-bar-container">
                         <div class="progress-bar-header">
                             <span class="progress-bar-label">Overall Progress</span>
-                            <span class="progress-bar-percentage" id="progress-percent-Phase-2">0%</span>
+                            <span class="progress-bar-percentage" id="progress-percent-Phase-2-A">0%</span>
                         </div>
                         <div class="progress-bar-track">
-                            <div class="progress-bar-fill" id="progress-fill-Phase-2"></div>
+                            <div class="progress-bar-fill" id="progress-fill-Phase-2-A"></div>
                         </div>
                     </div>
                     <div class="template-header">
@@ -1593,20 +1627,60 @@
                         <div class="template-headline">Configure your Informatica connection and data integration settings</div>
                     </div>
                     <div class="template-content">
-                        <div class="step-summary" id="summary-Phase-2">
-                            <div class="summary-header" onclick="toggleSummary('Phase-2')">
+                        <div class="step-summary" id="summary-Phase-2-A">
+                            <div class="summary-header" onclick="toggleSummary('Phase-2-A')">
                                 <span class="summary-title">Steps</span>
                                 <span class="summary-toggle">&#9660;</span>
                             </div>
                             <div class="summary-content">
-                                <div class="step-indicators" id="indicators-Phase-2"></div>
+                                <div class="step-indicators" id="indicators-Phase-2-A"></div>
                                 <div class="video-placeholder">
                                     <div class="video-placeholder-icon">&#9654;</div>
                                     <div class="video-placeholder-text">Tutorial Video</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="step-details-container" id="steps-Phase-2"></div>
+                        <div class="step-details-container" id="steps-Phase-2-A"></div>
+                    </div>
+                </div>
+
+                <!-- $[Phase-2-B]-Page -->
+                <div id="page-Phase-2-B" class="solution-template-page hidden">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb" id="breadcrumb-Phase-2-B">
+                        <span class="breadcrumb-item" onclick="navigateToPage('solution-manager')">Solution Manager</span>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Integrate Business Entities [Phase-2-B]</span>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-header">
+                            <span class="progress-bar-label">Overall Progress</span>
+                            <span class="progress-bar-percentage" id="progress-percent-Phase-2-B">0%</span>
+                        </div>
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill" id="progress-fill-Phase-2-B"></div>
+                        </div>
+                    </div>
+                    <div class="template-header">
+                        <div class="template-title">Integrate Business Entities from Informatica</div>
+                        <div class="template-headline">Text-only guide with links to documentation and resources</div>
+                    </div>
+                    <div class="template-content">
+                        <div class="step-summary" id="summary-Phase-2-B">
+                            <div class="summary-header" onclick="toggleSummary('Phase-2-B')">
+                                <span class="summary-title">Steps</span>
+                                <span class="summary-toggle">&#9660;</span>
+                            </div>
+                            <div class="summary-content">
+                                <div class="step-indicators" id="indicators-Phase-2-B"></div>
+                                <div class="video-placeholder">
+                                    <div class="video-placeholder-icon">&#9654;</div>
+                                    <div class="video-placeholder-text">Tutorial Video</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-details-container" id="steps-Phase-2-B"></div>
                     </div>
                 </div>
 
@@ -1644,7 +1718,8 @@
             currentSolution: null,
             stepProgress: {
                 'Phase-1': {},
-                'Phase-2': {}
+                'Phase-2-A': {},
+                'Phase-2-B': {}
             },
             hasUnsavedProgress: false
         };
@@ -1659,7 +1734,8 @@
         // ============================================
         const solutionTitles = {
             'Phase-1': 'Integrate Business Entities [Phase-1]',
-            'Phase-2': 'Integrate Business Entities [Phase-2]',
+            'Phase-2-A': 'Integrate Business Entities [Phase-2-A]',
+            'Phase-2-B': 'Integrate Business Entities [Phase-2-B]',
             'CH': 'Customer Households [CH]'
         };
 
@@ -1714,7 +1790,7 @@
                     action: 'Configure Mappings'
                 }
             ],
-            'Phase-2': [
+            'Phase-2-A': [
                 {
                     title: 'Connect to Informatica System',
                     headline: 'Establish connection with credentials',
@@ -1787,6 +1863,89 @@
                         { name: 'Add Related List', link: 'https://trailhead.salesforce.com/related', description: 'Display related records from Informatica' }
                     ]
                 }
+            ],
+            'Phase-2-B': [
+                {
+                    title: 'Connect to Informatica System',
+                    headline: 'Establish connection with credentials',
+                    type: 'text-links',
+                    description: 'To connect to your Informatica system, you will need to provide a <strong>Connection Name</strong>, the <strong>Tenant URL</strong> (e.g. https://your-tenant.informatica.com), your <strong>Username</strong>, and <strong>Password</strong>. Ensure that your Informatica tenant has API access enabled and that the credentials have sufficient permissions for data integration operations.',
+                    links: [
+                        { label: 'Informatica Connection Setup Guide', url: 'https://docs.informatica.com/cloud-common-services/administrator/current-version/connection-configuration.html' },
+                        { label: 'API Access Configuration', url: 'https://docs.informatica.com/cloud-common-services/administrator/current-version/api-access.html' }
+                    ]
+                },
+                {
+                    title: 'Choose Business Entity',
+                    headline: 'Select entities to integrate',
+                    type: 'text-links',
+                    description: 'Select the business entities you want to integrate from Informatica into D360. Available <strong>Tenants</strong> include USA-1 and Europe-1. Available <strong>Entities</strong> include Customer, Product, and Supplier. Choose the tenants and entities that match your integration requirements.',
+                    links: [
+                        { label: 'Business Entity Overview', url: 'https://docs.informatica.com/master-data-management/multidomain-mdm/current-version/business-entity-services-guide.html' },
+                        { label: 'Entity Selection Best Practices', url: 'https://docs.informatica.com/master-data-management/multidomain-mdm/current-version/best-practices.html' }
+                    ]
+                },
+                {
+                    title: 'Choose Identity Resolution',
+                    headline: 'Select resolution method',
+                    type: 'text-links',
+                    description: 'Two identity resolution methods are available:<br><br><strong>Direct Mapping</strong> &mdash; Use direct field mapping for identity resolution. Best for clean, well-structured data with consistent identifiers.<br><br><strong>Golden Key-Ring</strong> &mdash; Use the Golden Key-Ring approach for advanced identity resolution. Recommended for complex data with multiple source systems.',
+                    links: [
+                        { label: 'Identity Resolution Methods', url: 'https://docs.informatica.com/data-quality-and-governance/data-as-a-service/current-version/identity-resolution.html' },
+                        { label: 'Golden Key-Ring Documentation', url: 'https://docs.informatica.com/master-data-management/multidomain-mdm/current-version/match-merge.html' }
+                    ]
+                },
+                {
+                    title: 'Review Mappings',
+                    headline: 'Validate data object mappings',
+                    type: 'text-links',
+                    description: 'Review and validate the mappings for the following data objects: <strong>Customer_Base</strong>, <strong>Customer_Address</strong>, <strong>Customer_Contact</strong>, <strong>Product_Master</strong>, <strong>Product_Category</strong>, <strong>Product_Pricing</strong>, <strong>Supplier_Base</strong>, <strong>Supplier_Location</strong>, <strong>Order_Header</strong>, <strong>Order_Line</strong>, <strong>Payment_Info</strong>, and <strong>Inventory_Stock</strong>. Ensure all field mappings are correctly aligned between Informatica and D360 before proceeding.',
+                    links: [
+                        { label: 'Data Object Mapping Guide', url: 'https://docs.informatica.com/cloud-common-services/data-integration/current-version/mappings.html' },
+                        { label: 'Field Mapping Reference', url: 'https://docs.informatica.com/cloud-common-services/data-integration/current-version/field-mapping.html' }
+                    ]
+                },
+                {
+                    title: 'Validate Connected Data',
+                    headline: 'Preview integrated data',
+                    type: 'text-links',
+                    description: 'After configuring mappings, validate the connected data by previewing records from each integrated entity. Verify <strong>Customer Data</strong> (customer records from Informatica), <strong>Product Data</strong> (product catalog data), and <strong>Supplier Data</strong> (supplier information). Confirm that records are correctly transformed and loaded before enabling synchronization.',
+                    links: [
+                        { label: 'Data Validation Guide', url: 'https://docs.informatica.com/cloud-common-services/data-integration/current-version/data-preview.html' },
+                        { label: 'Troubleshooting Data Issues', url: 'https://docs.informatica.com/cloud-common-services/data-integration/current-version/troubleshooting.html' }
+                    ]
+                },
+                {
+                    title: 'Set up Identity Rules',
+                    headline: 'Configure match rules',
+                    type: 'text-links',
+                    description: 'Configure identity match rules to define how records are matched across systems:<br><br><strong>Fuzzy Name Match</strong> &mdash; Match records based on similar names<br><strong>Email Exact Match</strong> &mdash; Match records with identical email addresses<br><strong>Phone Number Match</strong> &mdash; Match records by phone number normalization<br><strong>Address Similarity</strong> &mdash; Match records by address components',
+                    links: [
+                        { label: 'Match Rule Configuration', url: 'https://docs.informatica.com/master-data-management/multidomain-mdm/current-version/match-rules.html' },
+                        { label: 'Identity Rule Best Practices', url: 'https://docs.informatica.com/master-data-management/multidomain-mdm/current-version/identity-best-practices.html' }
+                    ]
+                },
+                {
+                    title: 'Enable Sync',
+                    headline: 'Configure synchronization',
+                    type: 'text-links',
+                    description: 'Enable automatic synchronization between Informatica and Data 360. When sync is enabled, changes in your Informatica system will be automatically reflected in Data 360. Configure sync frequency, conflict resolution settings, and error handling policies to match your operational requirements.',
+                    links: [
+                        { label: 'Synchronization Setup Guide', url: 'https://docs.informatica.com/cloud-common-services/data-integration/current-version/synchronization.html' },
+                        { label: 'D360 Setup Documentation', url: 'https://help.salesforce.com/s/articleView?id=sf.data360_setup.htm' }
+                    ]
+                },
+                {
+                    title: 'Setup Experiences',
+                    headline: 'Configure user experiences',
+                    type: 'text-links',
+                    description: 'Configure the end-user experiences for working with integrated data in D360:<br><br><strong>Search Before Create</strong> &mdash; Enable duplicate checking before record creation<br><strong>Copy Field Values</strong> &mdash; Configure automatic field value population<br><strong>Add Related List</strong> &mdash; Display related records from Informatica',
+                    links: [
+                        { label: 'Search Before Create', url: 'https://trailhead.salesforce.com/sbc' },
+                        { label: 'Copy Field Values', url: 'https://trailhead.salesforce.com/copy' },
+                        { label: 'Add Related List', url: 'https://trailhead.salesforce.com/related' }
+                    ]
+                }
             ]
         };
 
@@ -1825,7 +1984,7 @@
         function clearProgress() {
             try {
                 localStorage.removeItem(STORAGE_KEY);
-                state.stepProgress = { 'Phase-1': {}, 'Phase-2': {} };
+                state.stepProgress = { 'Phase-1': {}, 'Phase-2-A': {}, 'Phase-2-B': {} };
                 state.hasUnsavedProgress = false;
             } catch (e) {
                 console.warn('Could not clear progress from localStorage:', e);
@@ -1840,12 +1999,14 @@
             const hasProgress = loadProgress();
 
             renderSolution('Phase-1');
-            renderSolution('Phase-2');
+            renderSolution('Phase-2-A');
+            renderSolution('Phase-2-B');
 
             // Restore progress indicators if loaded
             if (hasProgress) {
                 restoreProgressIndicators('Phase-1');
-                restoreProgressIndicators('Phase-2');
+                restoreProgressIndicators('Phase-2-A');
+                restoreProgressIndicators('Phase-2-B');
                 showNotification('Progress restored from previous session', true);
             }
 
@@ -1995,7 +2156,8 @@
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('solution-manager-page').classList.add('hidden');
             document.getElementById('page-Phase-1').classList.add('hidden');
-            document.getElementById('page-Phase-2').classList.add('hidden');
+            document.getElementById('page-Phase-2-A').classList.add('hidden');
+            document.getElementById('page-Phase-2-B').classList.add('hidden');
             document.getElementById('page-CH').classList.add('hidden');
         }
 
@@ -2250,6 +2412,17 @@
                     content += '</div>';
                     break;
 
+                case 'text-links':
+                    content += `<div class="step-description">${step.description}</div>`;
+                    if (step.links && step.links.length > 0) {
+                        content += '<div class="text-links-list">';
+                        step.links.forEach(link => {
+                            content += `<a href="${link.url}" target="_blank" class="text-link-item">${link.label} &rarr;</a>`;
+                        });
+                        content += '</div>';
+                    }
+                    break;
+
                 default:
                     // Fallback for steps without a type - render description if available
                     if (step.description) {
@@ -2313,7 +2486,7 @@
             const steps = solutions[solutionId];
 
             // Validate form if it's a form step
-            if (solutionId === 'Phase-2' && steps[stepIndex].type === 'form') {
+            if (solutionId === 'Phase-2-A' && steps[stepIndex].type === 'form') {
                 if (!validateFormFields(solutionId, stepIndex)) {
                     showNotification('Please fill in all required fields', false, true);
                     return;
